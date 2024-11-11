@@ -10,7 +10,7 @@ public class AIRacer : MonoBehaviour
     // Speed and Movement
     public float maxSpeed = 10f;
     public float maxDraftingSpeed = 12f;
-    public float turnSpeed = 5f;
+    public float turnSpeed = 3f;  // Slower turn speed
     public float turningAngleThreshold = 15f;
     public float currentSpeed = 0f;
     public float accelerationRate = 1.25f;
@@ -24,7 +24,7 @@ public class AIRacer : MonoBehaviour
     public float draftingDuration = 3f;
     private bool isDraftingActive = false;
     private float draftingEndTime = 0f;
-    public float draftingDelay = 3f; // Delay before drafting can start
+    public float draftingDelay = 3f;
     private float raceStartTime;
 
     // Maneuvering
@@ -53,6 +53,7 @@ public class AIRacer : MonoBehaviour
     public float maxEngineVolume = 1f;
 
     private Rigidbody rb;
+    private bool hasReachedEnd = false;
 
     void Start()
     {
@@ -71,16 +72,24 @@ public class AIRacer : MonoBehaviour
 
     IEnumerator DelayedStart()
     {
-        float delay = Random.Range(0.05f, 0.5f);
+        float delay = Random.Range(0.1f, 0.75f);
         yield return new WaitForSeconds(delay);
         SetNextWaypoint();
     }
 
     void Update()
     {
-        MoveTowardsWaypointWithOffset();
-        AlignToGroundSlope();
-        AdjustSpeedBasedOnAngle();
+        if (hasReachedEnd)
+        {
+            DecelerateToStop();
+        }
+        else
+        {
+            MoveTowardsWaypointWithOffset();
+            AlignToGroundSlope();
+            AdjustSpeedBasedOnAngle();
+        }
+
         SteerFrontWheels();
         RotateWheels();
         AdjustEngineSound();
@@ -89,7 +98,15 @@ public class AIRacer : MonoBehaviour
     void SetNextWaypoint()
     {
         if (waypoints.Length == 0) return;
-        currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+
+        if (currentWaypointIndex < waypoints.Length - 1)
+        {
+            currentWaypointIndex++;
+        }
+        else
+        {
+            hasReachedEnd = true;  // Stop moving after reaching the last waypoint
+        }
     }
 
     void MoveTowardsWaypointWithOffset()
@@ -110,9 +127,10 @@ public class AIRacer : MonoBehaviour
         Vector3 moveDirection = transform.forward * currentSpeed * Time.deltaTime;
         rb.MovePosition(rb.position + moveDirection);
 
+        // Slower rotation speed during turns
+        float dynamicTurnSpeed = Mathf.Lerp(turnSpeed, turnSpeed * 0.5f, Vector3.Angle(transform.forward, directionToTarget) / turningAngleThreshold);
         Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-        float rotationLerpSpeed = turnSpeed * 0.5f;
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationLerpSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, dynamicTurnSpeed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position) < 10f)
         {
@@ -173,6 +191,17 @@ public class AIRacer : MonoBehaviour
 
         float maxPossibleSpeed = isDraftingActive ? maxDraftingSpeed : maxSpeed;
         currentSpeed = Mathf.Clamp(currentSpeed, 0f, maxPossibleSpeed);
+    }
+
+    void DecelerateToStop()
+    {
+        if (currentSpeed > 0)
+        {
+            currentSpeed -= decelerationRate * Time.deltaTime;
+            currentSpeed = Mathf.Max(0f, currentSpeed);
+            Vector3 moveDirection = transform.forward * currentSpeed * Time.deltaTime;
+            rb.MovePosition(rb.position + moveDirection);
+        }
     }
 
     void ActivateDrafting()
