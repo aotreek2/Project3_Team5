@@ -105,7 +105,7 @@ public class CarMoveScr : MonoBehaviour
 
         //Acceleration Damper, to set max speed in a more realistic way
         accelerationDamper = maxAcceleration * damper;
-        accelerationDamper = Mathf.Clamp(accelerationDamper,-500f, maxAcceleration);
+        accelerationDamper = Mathf.Clamp(accelerationDamper, -500f, maxAcceleration);
 
         //Steering Damper, to reduce turning ability at higher speeds
 
@@ -148,7 +148,10 @@ public class CarMoveScr : MonoBehaviour
         {
             foreach (Wheel wheel in wheels)
             {
-                wheel.wheelCollider.brakeTorque = 300 * brakeAcceleration * Time.deltaTime;
+                if (wheel.axel == Axel.Rear) //only front wheels
+                {
+                    wheel.wheelCollider.brakeTorque = 300 * brakeAcceleration * Time.deltaTime;
+                }
             }
         }
         else
