@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 public class MenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject helpPanel, creditsPanel;
+    [SerializeField] private GameObject helpPanel, creditsPanel, leftButton, rightButton;
+    [SerializeField] private TMP_Text helpTitle, helpText;
     private Scene scene;
     void Start()
     {
@@ -15,6 +17,7 @@ public class MenuController : MonoBehaviour
         {
             helpPanel.gameObject.SetActive(false);
             creditsPanel.gameObject.SetActive(false);
+            leftButton.gameObject.SetActive(false);
         }
     }
 
@@ -41,6 +44,24 @@ public class MenuController : MonoBehaviour
         helpPanel.gameObject.SetActive(false);
         creditsPanel.gameObject.SetActive(false);
     }
+
+    public void OnRightButtonClicked()
+    {
+        helpTitle.text = "Controls";
+        helpText.text = "ASDW - Move <br> Shift/Space - Break <br> P/Escape - Pause";
+        rightButton.gameObject.SetActive(false);
+        leftButton.gameObject.SetActive(true);
+    }
+
+    public void OnLeftButtonClicked()
+    {
+        helpTitle.text = "Objective";
+        helpText.text = "Before the race starts, you will place traps in order to slow down your opponents  on the track, first to finish wins!";
+        leftButton.gameObject.SetActive(false);
+        rightButton.gameObject.SetActive(true);
+
+    }
+
     public void OnQuitButtonClicked()
     {
         Application.Quit();
