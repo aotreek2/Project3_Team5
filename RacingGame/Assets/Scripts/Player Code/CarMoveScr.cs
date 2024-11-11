@@ -39,6 +39,7 @@ public class CarMoveScr : MonoBehaviour
 
     float moveInput;
     float steerInput;
+    float currentTurn;
     float mph; //for the car's real speed, for use in UI.
 
     private Rigidbody carRb;
@@ -63,10 +64,10 @@ public class CarMoveScr : MonoBehaviour
         //Move();
         RotateWheelMesh();
         UpdateDamper();
-        if(steerInput != 0)
+        if(currentTurn != steerInput)
         {
             if (steerRoutine != null) { StopCoroutine(steerRoutine); }
-            steerRoutine = StartCoroutine(TurnTires(1));
+            steerRoutine = StartCoroutine(TurnTires());
         }
     }
 
@@ -123,12 +124,13 @@ public class CarMoveScr : MonoBehaviour
             }
         }
     }
-    IEnumerator TurnTires(float duration)
+    IEnumerator TurnTires()
     {
+        currentTurn = steerInput;
         float elapsedTime = 0;
-        while (elapsedTime < duration)
+        while (elapsedTime < 40)
         {
-            float t = elapsedTime / duration;
+            float t = elapsedTime / 40;
             foreach (Wheel wheel in wheels)
             {
                 if (wheel.axel == Axel.Front) //only front wheels
@@ -137,7 +139,7 @@ public class CarMoveScr : MonoBehaviour
                     wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, t);
                 }
             }
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.fixedDeltaTime;
             yield return null;
         }
     }
