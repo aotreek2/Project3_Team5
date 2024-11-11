@@ -128,9 +128,9 @@ public class CarMoveScr : MonoBehaviour
     {
         currentTurn = steerInput;
         float elapsedTime = 0;
-        while (elapsedTime < 40)
+        while (elapsedTime < 20)
         {
-            float t = elapsedTime / 40;
+            float t = elapsedTime / 20;
             foreach (Wheel wheel in wheels)
             {
                 if (wheel.axel == Axel.Front) //only front wheels
