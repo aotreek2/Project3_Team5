@@ -18,7 +18,7 @@ public class InputManager : MonoBehaviour
         carActions.Stop.started += ctx => moveScr.Brake(true);
         carActions.Stop.canceled += ctx => moveScr.Brake(false);
     }
-    private void Update()
+    private void FixedUpdate()
     {
         Vector2 moveInput = carActions.Move.ReadValue<Vector2>();
         moveScr.GetMove(moveInput);

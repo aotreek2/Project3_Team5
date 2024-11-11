@@ -23243,7 +23243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199953995235344, guid: 764bc68a1a0dd384184fdeedf75892f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.67
+      value: -0.36
       objectReference: {fileID: 0}
     - target: {fileID: 4199953995235344, guid: 764bc68a1a0dd384184fdeedf75892f9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -23280,6 +23280,21 @@ PrefabInstance:
     - target: {fileID: 4199953995235344, guid: 764bc68a1a0dd384184fdeedf75892f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: maxAcceleration
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: turnSensitivity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

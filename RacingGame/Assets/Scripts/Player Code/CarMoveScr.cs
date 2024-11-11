@@ -55,12 +55,13 @@ public class CarMoveScr : MonoBehaviour
 
     void Update()
     {
-        RotateWheelMesh();
+        
     }
 
     void FixedUpdate()
     {
-        Move();
+        //Move();
+        RotateWheelMesh();
         UpdateDamper();
         if(steerInput != 0)
         {
@@ -74,21 +75,21 @@ public class CarMoveScr : MonoBehaviour
     {
         moveInput = input.y; // acceleration & deceleration -1 to 1
         steerInput = input.x;// turning -1 to 1
+        Move();
     }
 
     void Move()
     {
         foreach (Wheel wheel in wheels)
         {
-            wheel.wheelCollider.motorTorque = moveInput * 500 * (maxAcceleration - accelerationDamper) * Time.deltaTime;
-            /*if (accelerationDamper < 1)
+            if (accelerationDamper < 1)
             {
                 wheel.wheelCollider.motorTorque = moveInput * 500 * maxAcceleration * Time.deltaTime;
             }
             else
             {
-                
-            }*/
+                wheel.wheelCollider.motorTorque = moveInput * 500 * (maxAcceleration - accelerationDamper) * Time.deltaTime;
+            }
         }
         mph = Mathf.Round(carRb.velocity.magnitude * 2.237f * 10) / 10;
         //Debug.Log(mph);
