@@ -1998,8 +1998,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2218300781959470999, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}
+      propertyPath: m_WheelDampingRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218300781959470999, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SuspensionSpring.damper
+      value: 4500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218300781959470999, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SuspensionSpring.spring
+      value: 35000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218300781959470999, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
       propertyPath: m_SidewaysFriction.m_Stiffness
-      value: 10
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218300781959470999, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumSlip
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218300781959470999, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_AsymptoteSlip
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218300781959470999, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218300781959470999, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218300781959470999, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_AsymptoteValue
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218300781959470999, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_ExtremumValue
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2829624638089174074, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}
@@ -2013,6 +2058,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}
+      propertyPath: maxSpeed
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
       propertyPath: maxSteerAngle
       value: 40
       objectReference: {fileID: 0}
@@ -2021,10 +2071,245 @@ PrefabInstance:
       propertyPath: maxAcceleration
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearBox.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[0]
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[1]
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[2]
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[3]
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[4]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[5]
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearbox.Array.data[0]
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearbox.Array.data[1]
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearbox.Array.data[2]
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearbox.Array.data[3]
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearbox.Array.data[4]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearbox.Array.data[5]
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[0].gearTorque
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[0].shiftSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[1].gearTorque
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[1].shiftSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[2].gearTorque
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[2].shiftSpeed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[3].gearTorque
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[3].shiftSpeed
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[4].gearTorque
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[4].shiftSpeed
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[5].gearTorque
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gears.Array.data[5].shiftSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearBox.Array.data[0].gearTorque
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearBox.Array.data[0].shiftSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearBox.Array.data[1].gearTorque
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearBox.Array.data[1].shiftSpeed
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearBox.Array.data[2].gearTorque
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearBox.Array.data[2].shiftSpeed
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearBox.Array.data[3].gearTorque
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearBox.Array.data[3].shiftSpeed
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearBox.Array.data[4].gearTorque
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearBox.Array.data[4].shiftSpeed
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearBox.Array.data[5].gearTorque
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: gearBox.Array.data[5].shiftSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635650108643127500, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_WheelDampingRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635650108643127500, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SuspensionSpring.damper
+      value: 4500
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635650108643127500, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SuspensionSpring.spring
+      value: 35000
+      objectReference: {fileID: 0}
     - target: {fileID: 3635650108643127500, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}
       propertyPath: m_SidewaysFriction.m_Stiffness
-      value: 10
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635650108643127500, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumSlip
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635650108643127500, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_AsymptoteSlip
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635650108643127500, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635650108643127500, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635650108643127500, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_AsymptoteValue
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3635650108643127500, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_ExtremumValue
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4286914135661645727, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}
@@ -2033,8 +2318,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4766826561384011197, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}
+      propertyPath: m_WheelDampingRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766826561384011197, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SuspensionSpring.damper
+      value: 4500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766826561384011197, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SuspensionSpring.spring
+      value: 35000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766826561384011197, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
       propertyPath: m_SidewaysFriction.m_Stiffness
-      value: 10
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766826561384011197, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumSlip
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766826561384011197, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_AsymptoteSlip
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766826561384011197, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766826561384011197, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766826561384011197, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_AsymptoteValue
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766826561384011197, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_ExtremumValue
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4875741372175539403, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}
@@ -2053,8 +2383,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8118634826804047701, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}
+      propertyPath: m_WheelDampingRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118634826804047701, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SuspensionSpring.damper
+      value: 4500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118634826804047701, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SuspensionSpring.spring
+      value: 35000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118634826804047701, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
       propertyPath: m_SidewaysFriction.m_Stiffness
-      value: 10
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118634826804047701, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumSlip
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118634826804047701, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_AsymptoteSlip
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118634826804047701, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_ExtremumValue
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118634826804047701, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_ExtremumSlip
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118634826804047701, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_AsymptoteValue
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118634826804047701, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_ExtremumValue
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

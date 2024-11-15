@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4356820498323312}
   - component: {fileID: 33792209832271054}
   - component: {fileID: 23317078515906846}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tire_LR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 4230640478603868}
   - component: {fileID: 33748815248203304}
   - component: {fileID: 23530492518120512}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tire_RR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4324271412272088}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TireMeshes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 4820352631024530}
   - component: {fileID: 33801206773357668}
   - component: {fileID: 23007465378151482}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FocE_Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 4662629362149760}
   - component: {fileID: 33312794467304266}
   - component: {fileID: 23626588277384124}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tire_RF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 4862218606162760}
   - component: {fileID: 33570878407352292}
   - component: {fileID: 23579652203172886}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FocE_Bumper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 7022000752861839106}
   - component: {fileID: 6440818696791190981}
   - component: {fileID: 3345401810585088390}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FocE08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,11 +586,24 @@ MonoBehaviour:
   - wheelObj: {fileID: 1154517874661722}
     wheelCollider: {fileID: 8118634826804047701}
     axel: 1
-  maxAcceleration: 100
+  gearBox:
+  - gearTorque: 400
+    shiftSpeed: 30
+  - gearTorque: 350
+    shiftSpeed: 60
+  - gearTorque: 300
+    shiftSpeed: 80
+  - gearTorque: 200
+    shiftSpeed: 120
+  - gearTorque: 100
+    shiftSpeed: 160
+  - gearTorque: 75
+    shiftSpeed: 200
+  maxAcceleration: 200
   brakeAcceleration: 5000
-  maxSpeed: 40
+  maxSpeed: 80
   turnSensitivity: 1
-  maxSteerAngle: 45
+  maxSteerAngle: 35
   _centerOfMass: {x: 0, y: 0, z: 0}
 --- !u!1 &1748005995608910
 GameObject:
@@ -603,7 +616,7 @@ GameObject:
   - component: {fileID: 4794065633057610}
   - component: {fileID: 33196669317473176}
   - component: {fileID: 23431343423420890}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tire_LF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -690,7 +703,7 @@ GameObject:
   - component: {fileID: 4954224637417518}
   - component: {fileID: 33280996927154872}
   - component: {fileID: 23171312801330454}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FocE_Carbody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -778,7 +791,7 @@ GameObject:
   - component: {fileID: 4939522850900610}
   - component: {fileID: 33400577954864496}
   - component: {fileID: 23693094600104252}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FocE_Hood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -860,7 +873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8670443362205518650}
   - component: {fileID: 8118634826804047701}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Tire_RR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -893,25 +906,25 @@ WheelCollider:
   m_Center: {x: 0, y: 0.15, z: 0}
   m_Radius: 0.34
   m_SuspensionSpring:
-    spring: 20000
-    damper: 2000
+    spring: 35000
+    damper: 4500
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_WheelDampingRate: 2
   m_ForwardFriction:
-    m_ExtremumSlip: 0.4
-    m_ExtremumValue: 1
+    m_ExtremumSlip: 12
+    m_ExtremumValue: 15
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 2
+    m_Stiffness: 6
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 2.4
+    m_ExtremumSlip: 5
+    m_ExtremumValue: 20
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 8
+    m_Stiffness: 5
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -931,7 +944,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7743704526023215463}
   - component: {fileID: 4766826561384011197}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Tire_LF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -964,25 +977,25 @@ WheelCollider:
   m_Center: {x: 0, y: 0.15, z: 0}
   m_Radius: 0.34
   m_SuspensionSpring:
-    spring: 20000
-    damper: 2000
+    spring: 35000
+    damper: 4500
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_WheelDampingRate: 2
   m_ForwardFriction:
-    m_ExtremumSlip: 0.4
-    m_ExtremumValue: 1
+    m_ExtremumSlip: 12
+    m_ExtremumValue: 15
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 2
+    m_Stiffness: 6
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 2.4
+    m_ExtremumSlip: 5
+    m_ExtremumValue: 20
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 8
+    m_Stiffness: 5
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1001,7 +1014,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5579099507089568754}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tires
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1038,7 +1051,7 @@ GameObject:
   - component: {fileID: 8505069358043700648}
   - component: {fileID: 8202004260538202033}
   - component: {fileID: 989691811304634167}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1189,7 +1202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8974517492258572139}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TireColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1225,7 +1238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1258278252989758071}
   - component: {fileID: 3635650108643127500}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Tire_LR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1258,25 +1271,25 @@ WheelCollider:
   m_Center: {x: 0, y: 0.15, z: 0}
   m_Radius: 0.34
   m_SuspensionSpring:
-    spring: 20000
-    damper: 2000
+    spring: 35000
+    damper: 4500
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_WheelDampingRate: 2
   m_ForwardFriction:
-    m_ExtremumSlip: 0.4
-    m_ExtremumValue: 1
+    m_ExtremumSlip: 12
+    m_ExtremumValue: 15
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 2
+    m_Stiffness: 6
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 2.4
+    m_ExtremumSlip: 5
+    m_ExtremumValue: 20
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 8
+    m_Stiffness: 5
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1296,7 +1309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4385008703993229438}
   - component: {fileID: 2218300781959470999}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Tire_RF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1329,25 +1342,25 @@ WheelCollider:
   m_Center: {x: 0, y: 0.15, z: 0}
   m_Radius: 0.34
   m_SuspensionSpring:
-    spring: 20000
-    damper: 2000
+    spring: 35000
+    damper: 4500
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_WheelDampingRate: 2
   m_ForwardFriction:
-    m_ExtremumSlip: 0.4
-    m_ExtremumValue: 1
+    m_ExtremumSlip: 12
+    m_ExtremumValue: 15
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 2
+    m_Stiffness: 6
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 2.4
+    m_ExtremumSlip: 5
+    m_ExtremumValue: 20
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 8
+    m_Stiffness: 5
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

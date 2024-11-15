@@ -21,13 +21,21 @@ public class CarMoveScr : MonoBehaviour
         public WheelCollider wheelCollider;
         public Axel axel;
     }
+    [Serializable] //setting up each gear in the gearbox
+    public struct Gears
+    {
+        public float gearTorque;
+        public float shiftSpeed;
+    }
 
     [SerializeField] List<Wheel> wheels; //the wheels
+    [SerializeField] List<Gears> gearBox;
 
-    //physics vars
+    //Car vars
     [SerializeField] float maxAcceleration = 30.0f;
     [SerializeField] float brakeAcceleration = 50.0f;
     [SerializeField] float maxSpeed = 100f;
+    int currentGear = 1;
     float accelerationDamper = 1.5f;
 
     Coroutine steerRoutine;
@@ -40,6 +48,7 @@ public class CarMoveScr : MonoBehaviour
     float moveInput;
     float steerInput;
     float currentTurn;
+    float dynamicSteerMax;
     float mph; //for the car's real speed, for use in UI.
 
     private Rigidbody carRb;
@@ -64,6 +73,7 @@ public class CarMoveScr : MonoBehaviour
         //Move();
         RotateWheelMesh();
         UpdateDamper();
+        UpdateGear();
         if(currentTurn != steerInput)
         {
             if (steerRoutine != null) { StopCoroutine(steerRoutine); }
@@ -93,9 +103,11 @@ public class CarMoveScr : MonoBehaviour
             }
         }
         mph = Mathf.Round(carRb.velocity.magnitude * 2.237f * 10) / 10;
+
+
         //Debug.Log(mph);
     }
-    void UpdateDamper() //used to modify multipliers as the car's speed changes
+    /*void UpdateDamper() //used to modify multipliers as the car's speed changes
     {
         //Debug.Log(carRb.velocity.magnitude);
 
@@ -110,17 +122,39 @@ public class CarMoveScr : MonoBehaviour
 
         //Steering Damper, to reduce turning ability at higher speeds
 
+    }*/
+
+    void UpdateDamper() //used to modify multipliers as the car's speed changes
+    {
+        //Debug.Log(carRb.velocity.magnitude);
+
+        float currentSpeed = Mathf.Clamp(carRb.velocity.magnitude, 0, maxSpeed - 0.01f); //ensure rational functions dont break.
+
+        //a float that goes from -0.8 upto to around 0.93 based on the car's speed compared to its max.
+        float damper = (-1 / ((0.1f * currentSpeed) - maxSpeed * 0.1f)) - (1f / (0.2f * maxSpeed * 0.1f) + 0.0001f);
+
+        //Acceleration Damper, to set max speed in a more realistic way
+        accelerationDamper = maxAcceleration * damper;
+        accelerationDamper = Mathf.Clamp(accelerationDamper, -500f, maxAcceleration);
+        Debug.Log(damper);
+        //Steering Damper, to reduce turning ability at higher speeds
+
+        float steerDamper = mph * 1.7f/ (maxSpeed * 2.237f); //linearly go from 0 to 1 as car speeds up
+        steerDamper = Mathf.Clamp01(steerDamper);
+        dynamicSteerMax = maxSteerAngle * steerDamper * 0.8f;
 
     }
-
-    void Steer()// turning the wheels
+    void UpdateGear()
     {
-        foreach (Wheel wheel in wheels)
+        if (mph > gearBox[currentGear].shiftSpeed && currentGear < gearBox.Count - 1)
         {
-            if (wheel.axel == Axel.Front) //only front wheels
+            currentGear++;
+        }
+        else if (currentGear > 1)
+        {
+            if (mph <= gearBox[currentGear - 1].shiftSpeed)
             {
-                float steerAngle = steerInput * turnSensitivity * maxSteerAngle;
-                wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, 5.6f);
+                currentGear--;
             }
         }
     }
@@ -128,15 +162,23 @@ public class CarMoveScr : MonoBehaviour
     {
         currentTurn = steerInput;
         float elapsedTime = 0;
-        while (elapsedTime < 20)
+        while (elapsedTime < 10)
         {
-            float t = elapsedTime / 20;
+            float t = elapsedTime / 10;
             foreach (Wheel wheel in wheels)
             {
                 if (wheel.axel == Axel.Front) //only front wheels
                 {
-                    float steerAngle = steerInput * turnSensitivity * maxSteerAngle;
-                    wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, t);
+                    if (dynamicSteerMax < 1)
+                    {
+                        float steerAngle = steerInput * turnSensitivity * maxSteerAngle;
+                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, t);
+                    }
+                    else
+                    {
+                        float steerAngle = steerInput * turnSensitivity * (maxSteerAngle - dynamicSteerMax);
+                        wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, steerAngle, t);
+                    }
                 }
             }
             elapsedTime += Time.fixedDeltaTime;
