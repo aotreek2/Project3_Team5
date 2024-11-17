@@ -55,6 +55,7 @@ public class AIRacer : MonoBehaviour
     private Rigidbody rb;
     private bool hasReachedEnd = false;
 
+    public string aiName = "AI Racer";
     void Start()
     {
         rb = GetComponent<Rigidbody>();

@@ -58,6 +58,7 @@ public class CarMoveScr : MonoBehaviour
     [SerializeField] GameObject mphNeedle;
     float minZRot = 135;
     float maxZRot = -110;
+    public string carName = "Player";
     void Start()
     {
         carRb = GetComponent<Rigidbody>();

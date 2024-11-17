@@ -511,6 +511,7 @@ MonoBehaviour:
   engineAudioSource: {fileID: 32272257}
   maxEnginePitch: 1.5
   maxEngineVolume: 1
+  aiName: AI Racer
 --- !u!65 &32272259
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1392,6 +1393,7 @@ MonoBehaviour:
   engineAudioSource: {fileID: 184773216}
   maxEnginePitch: 1.5
   maxEngineVolume: 1
+  aiName: AI Racer
 --- !u!65 &184773218
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2445,6 +2447,7 @@ MonoBehaviour:
   engineAudioSource: {fileID: 652164681}
   maxEnginePitch: 1.5
   maxEngineVolume: 1
+  aiName: AI Racer
 --- !u!65 &652164683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2922,6 +2925,7 @@ MonoBehaviour:
   engineAudioSource: {fileID: 728903087}
   maxEnginePitch: 1.5
   maxEngineVolume: 1
+  aiName: AI Racer
 --- !u!65 &728903089
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3853,6 +3857,7 @@ MonoBehaviour:
   engineAudioSource: {fileID: 1406359416}
   maxEnginePitch: 1.5
   maxEngineVolume: 1
+  aiName: AI Racer
 --- !u!65 &1406359418
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4690,6 +4695,7 @@ MonoBehaviour:
   engineAudioSource: {fileID: 1777747904}
   maxEnginePitch: 1.5
   maxEngineVolume: 1
+  aiName: AI Racer
 --- !u!65 &1777747906
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5116,6 +5122,8 @@ MonoBehaviour:
   player: {fileID: 1823931264}
   trapPanel: {fileID: 925151091}
   trapCamera: {fileID: 195953655}
+  raceResults: []
+  finishLine: {fileID: 2055598509}
   countdownTxt: {fileID: 62012077}
 --- !u!4 &2044330354
 Transform:
@@ -5127,6 +5135,59 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 220.8719, y: -27.164274, z: 200.14546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2055598508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2055598510}
+  - component: {fileID: 2055598509}
+  m_Layer: 0
+  m_Name: EndCheckPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &2055598509
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055598508}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 111.16118, y: 47.128693, z: 1}
+  m_Center: {x: -12.562035, y: 15.804928, z: 0}
+--- !u!4 &2055598510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055598508}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 302.4, y: 8.2, z: 1239}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5169,3 +5230,4 @@ SceneRoots:
   - {fileID: 2044330354}
   - {fileID: 1883353423}
   - {fileID: 709149586}
+  - {fileID: 2055598510}

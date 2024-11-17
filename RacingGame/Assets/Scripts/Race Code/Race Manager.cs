@@ -10,6 +10,8 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private GameObject player, trapPanel;
     [SerializeField] private Camera trapCamera;
     private int countdown = 3;
+    [SerializeField] private List<string> raceResults = new List<string>();
+    [SerializeField] private Collider finishLine;
 
     [Header("UI References")]
     [SerializeField] private TMP_Text countdownTxt;
@@ -33,7 +35,7 @@ public class RaceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CheckFinish();
     }
 
     public void SetUpRace()
@@ -52,7 +54,7 @@ public class RaceManager : MonoBehaviour
 
     private IEnumerator Countdown()
     {
-          while (countdown > 0)
+        while (countdown > 0)
         {
             countdownTxt.text = countdown.ToString();
             yield return new WaitForSeconds(1f);
@@ -78,5 +80,43 @@ public class RaceManager : MonoBehaviour
         InputManager playerInput = player.GetComponent<InputManager>();
         playerInput.enabled = true;
         playerScript.enabled = true;
+    }
+
+    public void FinishRace(string racerName, string racerType)
+    {
+        string result = $"{racerName} ({racerType})";
+        if (!raceResults.Contains(result))
+        {
+            raceResults.Add(result);
+            Debug.Log($"{racerName} ({racerType}) finished at position {raceResults.Count}");
+        }
+    }
+
+    public List<string> GetRaceResults()
+    {
+        return raceResults;
+    }
+
+    private void CheckFinish()
+    {
+        // Detect if it's a player
+        CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
+        if (finishLine.bounds.Intersects(player.GetComponent<Collider>().bounds))
+        {
+            FinishRace(playerScript.carName, "Player");
+            return;
+        }
+
+        foreach (GameObject ai in aiRacers)
+        {
+            AIRacer aiRacer = ai.GetComponent<AIRacer>();
+            if (finishLine.bounds.Intersects(aiRacer.GetComponent<Collider>().bounds))
+            {
+                FinishRace(aiRacer.aiName, "AI");
+                return;
+            }
+        }
+
+        // Handle other cases (if needed)
     }
 }

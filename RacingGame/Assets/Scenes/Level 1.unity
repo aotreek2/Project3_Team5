@@ -430,6 +430,8 @@ MonoBehaviour:
   player: {fileID: 944495642}
   trapPanel: {fileID: 1763110019}
   trapCamera: {fileID: 1952038091}
+  raceResults: []
+  finishLine: {fileID: 648543839}
   countdownTxt: {fileID: 1800504114}
 --- !u!4 &247048852
 Transform:
@@ -860,6 +862,7 @@ MonoBehaviour:
   engineAudioSource: {fileID: 404797322}
   maxEnginePitch: 1.5
   maxEngineVolume: 1
+  aiName: Mike
 --- !u!65 &404797324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -938,6 +941,59 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 667.9, y: 0, z: 953.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &648543838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 648543840}
+  - component: {fileID: 648543839}
+  m_Layer: 0
+  m_Name: EndCheckPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &648543839
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648543838}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 111.16118, y: 47.128693, z: 1}
+  m_Center: {x: -12.562035, y: 15.804928, z: 0}
+--- !u!4 &648543840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648543838}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 302.4, y: 8.2, z: 1239}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1357,6 +1413,7 @@ MonoBehaviour:
   engineAudioSource: {fileID: 749097437}
   maxEnginePitch: 1.5
   maxEngineVolume: 1
+  aiName: Dave
 --- !u!65 &749097439
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3069,6 +3126,7 @@ MonoBehaviour:
   engineAudioSource: {fileID: 1770143565}
   maxEnginePitch: 1.5
   maxEngineVolume: 1
+  aiName: John
 --- !u!65 &1770143567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4044,6 +4102,7 @@ MonoBehaviour:
   engineAudioSource: {fileID: 2096972260}
   maxEnginePitch: 1.5
   maxEngineVolume: 1
+  aiName: Matt
 --- !u!65 &2096972262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4100,3 +4159,4 @@ SceneRoots:
   - {fileID: 147897688}
   - {fileID: 1952038092}
   - {fileID: 2089474561}
+  - {fileID: 648543840}
