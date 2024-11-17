@@ -1,17 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TrapCameraController : MonoBehaviour
 {
     [Header("Camera Settings")]
     [SerializeField] private float speed = 25;
     
-
     [Header("Game References")]
-    [SerializeField] private GameObject[] aiRacers;
     [SerializeField] private GameObject trap;
-    [SerializeField] private GameObject player;
 
     private Camera cam;
     
@@ -19,17 +18,6 @@ public class TrapCameraController : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         Cursor.visible = true;
-
-        foreach (GameObject ai in aiRacers)
-        {
-           AIRacer aiScript = ai.GetComponent<AIRacer>();
-           aiScript.enabled = false;
-        }
-
-        CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
-        InputManager playerInput = player.GetComponent<InputManager>();
-        playerInput.enabled = false;
-        playerScript.enabled = false;
     }
 
     void Update()
@@ -49,11 +37,11 @@ public class TrapCameraController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            speed = 50f;
+            speed = 100f;
         }
         else
         {
-            speed = 25f;
+            speed = 50f;
         }
 
 
@@ -64,6 +52,8 @@ public class TrapCameraController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) // Left mouse button click
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+
             Vector3 mousePosition = Input.mousePosition;
 
             // Convert mouse position to world position
