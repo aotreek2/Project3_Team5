@@ -101,7 +101,6 @@ public class RaceManager : MonoBehaviour
 
     private void CheckFinish()
     {
-        // Detect if it's a player
         CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
         if (finishLine.bounds.Intersects(player.GetComponent<Collider>().bounds))
         {
@@ -119,6 +118,6 @@ public class RaceManager : MonoBehaviour
             }
         }
 
-        // Handle other cases (if needed)
+        
     }
 }
