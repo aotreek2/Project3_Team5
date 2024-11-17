@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static CarMoveScr;
 
 public class CarMoveScr : MonoBehaviour
@@ -53,6 +54,10 @@ public class CarMoveScr : MonoBehaviour
 
     private Rigidbody carRb;
 
+    //Car UI vars
+    [SerializeField] GameObject mphNeedle;
+    float minZRot = 135;
+    float maxZRot = -110;
     void Start()
     {
         carRb = GetComponent<Rigidbody>();
@@ -104,8 +109,13 @@ public class CarMoveScr : MonoBehaviour
         }
         mph = Mathf.Round(carRb.velocity.magnitude * 2.237f * 10) / 10;
 
+        if (mphNeedle != null)
+        {
+            //Set mph needle rotation go from from 135 to -110 based on speed. Goodluck
 
-        //Debug.Log(mph);
+           // mphNeedle.transform.rotation.z = 135 - 
+        }
+        Debug.Log(mph);
     }
     /*void UpdateDamper() //used to modify multipliers as the car's speed changes
     {
@@ -136,7 +146,7 @@ public class CarMoveScr : MonoBehaviour
         //Acceleration Damper, to set max speed in a more realistic way
         accelerationDamper = maxAcceleration * damper;
         accelerationDamper = Mathf.Clamp(accelerationDamper, -500f, maxAcceleration);
-        Debug.Log(damper);
+        //Debug.Log(damper);
         //Steering Damper, to reduce turning ability at higher speeds
 
         float steerDamper = mph * 1.7f/ (maxSpeed * 2.237f); //linearly go from 0 to 1 as car speeds up
