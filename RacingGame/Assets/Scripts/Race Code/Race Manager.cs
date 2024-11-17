@@ -16,7 +16,6 @@ public class RaceManager : MonoBehaviour
 
     void Start()
     {
-        Cursor.visible = true;
         countdownTxt.enabled = false;
 
         foreach (GameObject ai in aiRacers)
