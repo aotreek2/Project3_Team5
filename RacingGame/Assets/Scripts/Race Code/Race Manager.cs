@@ -9,8 +9,8 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private GameObject[] aiRacers;
     [SerializeField] private GameObject player, trapPanel;
     [SerializeField] private Camera trapCamera;
+    [SerializeField] private GameObject playerCamera;
     private int countdown = 3;
-
     [Header("UI References")]
     [SerializeField] private TMP_Text countdownTxt;
 
@@ -26,6 +26,7 @@ public class RaceManager : MonoBehaviour
 
         CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
         InputManager playerInput = player.GetComponent<InputManager>();
+        playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera");
         playerInput.enabled = false;
         playerScript.enabled = false;
     }
@@ -38,7 +39,7 @@ public class RaceManager : MonoBehaviour
 
     public void SetUpRace()
     {
-        Cursor.visible = false;
+        playerCamera.GetComponent<CarCameraController>().ConfineCursor();
         trapCamera.enabled = false;
         trapPanel.SetActive(false);
         countdownTxt.enabled = true;

@@ -21,9 +21,6 @@ public class CarCameraController : MonoBehaviour
         // Set the initial position and rotation to match the target values exactly
         transform.localPosition = targetPosition;
         transform.localRotation = targetRotation;
-
-        // Confine and hide the cursor
-        ConfineCursor();
     }
 
     private void LateUpdate()
@@ -57,7 +54,7 @@ public class CarCameraController : MonoBehaviour
         }
     }
 
-    private void ConfineCursor()
+    public void ConfineCursor()
     {
         // Confine the cursor to the game window and make it invisible
         Cursor.lockState = CursorLockMode.Confined;
