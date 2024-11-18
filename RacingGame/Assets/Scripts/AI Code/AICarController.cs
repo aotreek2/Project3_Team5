@@ -87,8 +87,8 @@ public class AICarController : MonoBehaviour
     {
         // Adjust motor torque based on current speed
         float targetTorque = rb.velocity.magnitude < currentSpeed ? acceleration : 0;
-        rearLeftWheel.motorTorque = targetTorque;
-        rearRightWheel.motorTorque = targetTorque;
+        frontLeftWheel.motorTorque = targetTorque;
+        frontRightWheel.motorTorque = targetTorque;
     }
 
     private void ApplyBraking()
@@ -119,33 +119,26 @@ public class AICarController : MonoBehaviour
         wheelTransform.position = pos;
         wheelTransform.rotation = rot;
     }
-
-    private void FixedUpdate()
-    {
-        // Apply downward force to prevent flipping
-        Vector3 downForce = -transform.up * rb.velocity.magnitude * 5f;
-        rb.AddForce(downForce, ForceMode.Force);
-    }
-
     private void SetupWheelColliders()
     {
+        
         WheelFrictionCurve forwardFriction = new WheelFrictionCurve
         {
-            extremumSlip = 0.4f,
-            extremumValue = 1f,
-            asymptoteSlip = 0.7f, // Reduced slightly for better grip
+            extremumSlip = 12f,
+            extremumValue = 15f,
+            asymptoteSlip = 0.8f, // Reduced slightly for better grip
             asymptoteValue = 0.5f,
-            stiffness = 2f
+            stiffness = 6f
         };
 
         WheelFrictionCurve sidewaysFriction = new WheelFrictionCurve
         {
             extremumSlip = 0.2f,
             extremumValue = 1f,
-            asymptoteSlip = 0.4f, // Tighter grip for sharper turns
+            asymptoteSlip = 0.6f, // Tighter grip for sharper turns
             asymptoteValue = 0.8f,
-            stiffness = 2f
-        };
+            stiffness = 6f
+        }; 
 
         foreach (WheelCollider wheel in new[] { frontLeftWheel, frontRightWheel, rearLeftWheel, rearRightWheel })
         {
@@ -159,7 +152,7 @@ public class AICarController : MonoBehaviour
                 targetPosition = 0.5f
             };
             wheel.suspensionSpring = suspensionSpring;
-            wheel.suspensionDistance = 0.2f;
+            wheel.suspensionDistance = 0.3f;
             wheel.mass = 20f;
         }
     }

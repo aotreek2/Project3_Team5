@@ -116,7 +116,7 @@ public class CarMoveScr : MonoBehaviour
 
            // mphNeedle.transform.rotation.z = 135 - 
         }
-        Debug.Log(mph);
+       // Debug.Log(mph);
     }
     /*void UpdateDamper() //used to modify multipliers as the car's speed changes
     {
