@@ -11,13 +11,15 @@ public class TrapCameraController : MonoBehaviour
     
     [Header("Game References")]
     [SerializeField] private GameObject trap;
-
+    [SerializeField] private int trapsPlaced;
+    [SerializeField] private TMP_Text trapsLeft;
     private Camera cam;
     
     private void Start()
     {
         cam = GetComponent<Camera>();
         Cursor.visible = true;
+        trapsLeft.text = "Traps Left: " + (5 - trapsPlaced);
     }
 
     void Update()
@@ -64,7 +66,12 @@ public class TrapCameraController : MonoBehaviour
                 float spawnOffset = objectHeight / 2f;
                 Vector3 spawnPosition = hitInfo.point + new Vector3(0, spawnOffset, 0);
                 Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
-                Instantiate(trap, spawnPosition, spawnRotation);
+                if(trapsPlaced < 5)
+                {
+                    Instantiate(trap, spawnPosition, spawnRotation);
+                    trapsPlaced += 1;
+                    trapsLeft.text = "Traps Left: " + (5 - trapsPlaced); 
+                }
             }
         }
     }

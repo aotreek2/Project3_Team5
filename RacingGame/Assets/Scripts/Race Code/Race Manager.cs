@@ -23,7 +23,7 @@ public class RaceManager : MonoBehaviour
 
         foreach (GameObject ai in aiRacers)
         {
-            AICarController aiScript = ai.GetComponent<AICarController>();
+            AIRacer aiScript = ai.GetComponent<AIRacer>();
             aiScript.enabled = false;
         }
 
@@ -74,7 +74,7 @@ public class RaceManager : MonoBehaviour
     {
         foreach (GameObject ai in aiRacers)
         {
-            AICarController aiScript = ai.GetComponent<AICarController>();
+            AIRacer aiScript = ai.GetComponent<AIRacer>();
             aiScript.enabled = true;
         }
 
