@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 2.unity
     guid: 1dc57073aea396346a45c6763fd058d3
+  - enabled: 1
+    path: Assets/Scenes/RaceResults.unity
+    guid: fcda3ecf56e3e45449bcde40abb24ca0
   m_configObjects: {}

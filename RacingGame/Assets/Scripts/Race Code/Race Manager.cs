@@ -12,8 +12,8 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private Camera trapCamera;
     [SerializeField] private GameObject playerCamera;
     private int countdown = 3;
-    [SerializeField] private List<string> raceResults = new List<string>();
     [SerializeField] private Collider finishLine;
+    [SerializeField] private ResultManager results;
 
     [Header("UI References")]
     [SerializeField] private TMP_Text countdownTxt;
@@ -31,6 +31,7 @@ public class RaceManager : MonoBehaviour
         CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
         InputManager playerInput = player.GetComponent<InputManager>();
         playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera");
+        playerCamera.GetComponent<AudioListener>().enabled = false;
         playerInput.enabled = false;
         playerScript.enabled = false;
     }
@@ -45,6 +46,8 @@ public class RaceManager : MonoBehaviour
     {
         playerCamera.GetComponent<CarCameraController>().ConfineCursor();
         trapCamera.enabled = false;
+        trapCamera.GetComponent<AudioListener>().enabled = false;
+        playerCamera.GetComponent<AudioListener>().enabled = true;
         trapPanel.SetActive(false);
         countdownTxt.enabled = true;
         StartCountdown();
@@ -84,38 +87,24 @@ public class RaceManager : MonoBehaviour
         playerInput.enabled = true;
         playerScript.enabled = true;
     }
-
-    public void FinishRace(string racerName, string racerType)
-    {
-        string result = $"{racerName} ({racerType})";
-        if (!raceResults.Contains(result))
-        {
-            raceResults.Add(result);
-            Debug.Log($"{racerName} ({racerType}) finished at position {raceResults.Count}");
-        }
-    }
-
-    public List<string> GetRaceResults()
-    {
-        return raceResults;
-    }
-
     private void CheckFinish()
     {
         CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
         if (finishLine.bounds.Intersects(player.GetComponent<Collider>().bounds))
         {
-            FinishRace(playerScript.carName, "Player");
-            SceneManager.LoadScene("Level 2");
+            results.FinishRace(playerScript.carName, "Player");
+            results.AddRacers(playerScript.gameObject);
+            SceneManager.LoadScene("RaceResults");
             return;
         }
 
         foreach (GameObject ai in aiRacers)
         {
             AICarController aiRacer = ai.GetComponent<AICarController>();
-            if (finishLine.bounds.Intersects(aiRacer.GetComponent<Collider>().bounds))
+            if (finishLine.bounds.Intersects(aiRacer.GetComponentInChildren<Collider>().bounds))
             {
-                FinishRace(aiRacer.aiName, "AI");
+                results.FinishRace(aiRacer.aiName, "AI");
+                results.AddRacers(aiRacer.gameObject);
                 return;
             }
         }

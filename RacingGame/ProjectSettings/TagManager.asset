@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Racers
   - PlayerCamera
+  - Placements
   layers:
   - Default
   - TransparentFX
