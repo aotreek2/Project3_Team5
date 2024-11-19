@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class RaceManager : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class RaceManager : MonoBehaviour
 
         foreach (GameObject ai in aiRacers)
         {
-            AIRacer aiScript = ai.GetComponent<AIRacer>();
+            AICarController aiScript = ai.GetComponent<AICarController>();
             aiScript.enabled = false;
         }
 
@@ -74,7 +75,7 @@ public class RaceManager : MonoBehaviour
     {
         foreach (GameObject ai in aiRacers)
         {
-            AIRacer aiScript = ai.GetComponent<AIRacer>();
+            AICarController aiScript = ai.GetComponent<AICarController>();
             aiScript.enabled = true;
         }
 
@@ -105,12 +106,13 @@ public class RaceManager : MonoBehaviour
         if (finishLine.bounds.Intersects(player.GetComponent<Collider>().bounds))
         {
             FinishRace(playerScript.carName, "Player");
+            SceneManager.LoadScene("Level 2");
             return;
         }
 
         foreach (GameObject ai in aiRacers)
         {
-            AIRacer aiRacer = ai.GetComponent<AIRacer>();
+            AICarController aiRacer = ai.GetComponent<AICarController>();
             if (finishLine.bounds.Intersects(aiRacer.GetComponent<Collider>().bounds))
             {
                 FinishRace(aiRacer.aiName, "AI");
