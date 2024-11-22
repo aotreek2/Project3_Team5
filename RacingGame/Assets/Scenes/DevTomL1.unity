@@ -327,6 +327,7 @@ MonoBehaviour:
   - {fileID: 1192519879}
   - {fileID: 1036210470}
   - {fileID: 1097943443}
+  - {fileID: 1171918970}
   player: {fileID: 289594489}
   trapPanel: {fileID: 817004525}
   trapCamera: {fileID: 472008683}
@@ -1147,7 +1148,6 @@ MonoBehaviour:
   - {fileID: 748789861}
   - {fileID: 722450111}
   - {fileID: 2143042201}
-  - {fileID: 2143042201}
 --- !u!4 &802689985
 Transform:
   m_ObjectHideFlags: 0
@@ -1732,6 +1732,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1171918970 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8770784273822695785, guid: f0168c3b4496d9e47818fae86103d0bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1523049491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1192519879 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8770784273822695785, guid: f0168c3b4496d9e47818fae86103d0bc,
@@ -1820,6 +1826,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2639911547398962037, guid: f0168c3b4496d9e47818fae86103d0bc,
+        type: 3}
+      propertyPath: path
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639911547398962037, guid: f0168c3b4496d9e47818fae86103d0bc,
+        type: 3}
+      propertyPath: pathManager
+      value: 
+      objectReference: {fileID: 802689984}
     - target: {fileID: 5788810335751438206, guid: f0168c3b4496d9e47818fae86103d0bc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2630,8 +2646,8 @@ SceneRoots:
   - {fileID: 722450112}
   - {fileID: 2143042202}
   - {fileID: 5213295748722178136}
+  - {fileID: 1523049491}
   - {fileID: 1036210469}
   - {fileID: 1097943442}
   - {fileID: 496223296}
   - {fileID: 802689985}
-  - {fileID: 1523049491}
