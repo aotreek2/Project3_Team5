@@ -532,7 +532,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1350
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -605,6 +605,8 @@ MonoBehaviour:
   turnSensitivity: 1
   maxSteerAngle: 35
   _centerOfMass: {x: 0, y: 0, z: 0}
+  mphNeedle: {fileID: 0}
+  carName: Player
 --- !u!1 &1748005995608910
 GameObject:
   m_ObjectHideFlags: 0
