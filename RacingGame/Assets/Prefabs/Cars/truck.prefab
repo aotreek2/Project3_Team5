@@ -890,8 +890,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5788810335751438206}
-  - component: {fileID: 5709837491723975157}
   - component: {fileID: 2639911547398962037}
+  - component: {fileID: 5709837491723975157}
   m_Layer: 3
   m_Name: truck
   m_TagString: Untagged
@@ -916,6 +916,42 @@ Transform:
   - {fileID: 3946473586049639021}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2639911547398962037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8770784273822695785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ac8477cb18409468232b20785167ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathManager: {fileID: 0}
+  path: {fileID: 0}
+  maxSpeed: 70
+  acceleration: 6000
+  steeringSensitivity: 0.6
+  brakeForce: 6000
+  waypointReachThreshold: 50
+  turnSpeedModifier: 0.4
+  maxSteerAngle: 35
+  obstacleAvoidanceRange: 50
+  obstacleAvoidanceSteerAngle: 35
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  frontLeftWheel: {fileID: 5954126234562280693}
+  frontRightWheel: {fileID: 8715901066880895158}
+  rearLeftWheel: {fileID: 5578802251591114095}
+  rearRightWheel: {fileID: 248702192779589667}
+  frontLeftTransform: {fileID: 8792628044057302600}
+  frontRightTransform: {fileID: 2684341046270625086}
+  rearLeftTransform: {fileID: 4546972261328980304}
+  rearRightTransform: {fileID: 5364369970949157918}
+  currentSpeed: 0
+  aiName: Truck
 --- !u!54 &5709837491723975157
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -943,41 +979,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2639911547398962037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8770784273822695785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5ac8477cb18409468232b20785167ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: {fileID: 0}
-  maxSpeed: 70
-  acceleration: 6000
-  steeringSensitivity: 0.6
-  brakeForce: 6000
-  waypointReachThreshold: 50
-  turnSpeedModifier: 0.4
-  maxSteerAngle: 35
-  obstacleAvoidanceRange: 50
-  obstacleAvoidanceSteerAngle: 35
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  frontLeftWheel: {fileID: 5954126234562280693}
-  frontRightWheel: {fileID: 8715901066880895158}
-  rearLeftWheel: {fileID: 5578802251591114095}
-  rearRightWheel: {fileID: 248702192779589667}
-  frontLeftTransform: {fileID: 8792628044057302600}
-  frontRightTransform: {fileID: 2684341046270625086}
-  rearLeftTransform: {fileID: 4546972261328980304}
-  rearRightTransform: {fileID: 5364369970949157918}
-  currentSpeed: 0
-  aiName: Truck
 --- !u!1 &8985833359025341286
 GameObject:
   m_ObjectHideFlags: 0

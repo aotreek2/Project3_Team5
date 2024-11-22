@@ -3,6 +3,7 @@ using Cinemachine;
 
 public class AICarController : MonoBehaviour
 {
+    public PathManager pathManager;
     public CinemachineSmoothPath path;
     public float maxSpeed = 20f;
     public float acceleration = 500f;
@@ -12,9 +13,9 @@ public class AICarController : MonoBehaviour
     public float turnSpeedModifier = 0.4f;
     public float maxSteerAngle = 35f;
 
-    public float obstacleAvoidanceRange = 10f; // Range for obstacle detection
-    public float obstacleAvoidanceSteerAngle = 15f; // Extra steering for avoidance
-    public LayerMask obstacleLayer; // Layer to specify obstacles
+    public float obstacleAvoidanceRange = 10f;
+    public float obstacleAvoidanceSteerAngle = 15f;
+    public LayerMask obstacleLayer;
 
     public WheelCollider frontLeftWheel;
     public WheelCollider frontRightWheel;
@@ -30,11 +31,31 @@ public class AICarController : MonoBehaviour
     public float currentSpeed;
     public string aiName = "AI Racer";
 
+    private float stoppedTime = 0f;
+    private Vector3 lastWaypointPosition;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.centerOfMass = new Vector3(0, -1f, 0); // Lower center of mass for stability
+        rb.centerOfMass = new Vector3(0, -1f, 0);
         currentSpeed = maxSpeed * Random.Range(0.2f, 1.0f);
+
+        if(pathManager != null ) 
+        {
+            path = pathManager.AssignTrack();
+        }
+        else
+        {
+            Debug.LogError("RaceManager is not assigned to the car.");
+            return;
+        }
+
+        if (path != null && path.m_Waypoints.Length > 0)
+        {
+            Vector3 startPosition = path.m_Waypoints[0].position;
+            transform.position = new Vector3(startPosition.x, transform.position.y, startPosition.z);
+            lastWaypointPosition = transform.position;
+        }
 
         SetupWheelColliders();
     }
@@ -43,6 +64,7 @@ public class AICarController : MonoBehaviour
     {
         FollowPath();
         UpdateWheelTransforms();
+        CheckIfStopped();
     }
 
     private void FollowPath()
@@ -52,7 +74,6 @@ public class AICarController : MonoBehaviour
         Vector3 targetPosition = path.m_Waypoints[currentWaypointIndex].position;
         Vector3 localTarget = transform.InverseTransformPoint(targetPosition);
 
-        // Calculate turn angle and speed adjustment
         float turnAngle = Mathf.Abs(localTarget.x / localTarget.magnitude);
         float turnModifier = Mathf.Lerp(1f, turnSpeedModifier, turnAngle);
         currentSpeed = maxSpeed * turnModifier;
@@ -60,7 +81,6 @@ public class AICarController : MonoBehaviour
         ApplySteering(localTarget);
         ApplyMotor();
 
-        // Apply braking force during sharp turns
         if (turnAngle > 0.2f)
         {
             ApplyBraking();
@@ -70,15 +90,14 @@ public class AICarController : MonoBehaviour
             ReleaseBraking();
         }
 
-        // Check if close enough to the waypoint to proceed
         if (Vector3.Distance(transform.position, targetPosition) < waypointReachThreshold)
         {
-            // Stop at the final waypoint
+            lastWaypointPosition = transform.position;
+
             if (currentWaypointIndex == path.m_Waypoints.Length - 1)
             {
                 currentSpeed = 0;
                 ApplyBraking();
-               // enabled = false; // Disable the script to prevent further updates
             }
             else
             {
@@ -89,21 +108,16 @@ public class AICarController : MonoBehaviour
 
     private void ApplySteering(Vector3 localTarget)
     {
-        // Standard path-following steering
         float steerAngle = Mathf.Clamp(localTarget.x / localTarget.magnitude * maxSteerAngle, -maxSteerAngle, maxSteerAngle);
 
-        // Check for obstacles in front
         if (Physics.Raycast(transform.position, transform.forward, obstacleAvoidanceRange, obstacleLayer))
         {
-            // If obstacle detected, adjust steering
             if (!Physics.Raycast(transform.position, transform.forward + transform.right * 0.5f, obstacleAvoidanceRange, obstacleLayer))
             {
-                // Obstacle on the left side, steer slightly right
                 steerAngle += obstacleAvoidanceSteerAngle;
             }
             else if (!Physics.Raycast(transform.position, transform.forward - transform.right * 0.5f, obstacleAvoidanceRange, obstacleLayer))
             {
-                // Obstacle on the right side, steer slightly left
                 steerAngle -= obstacleAvoidanceSteerAngle;
             }
         }
@@ -184,5 +198,29 @@ public class AICarController : MonoBehaviour
             wheel.mass = 20f;
         }
     }
+
+    private void CheckIfStopped()
+    {
+        float speed = rb.velocity.magnitude;
+
+        if (speed < 0.1f)
+        {
+            stoppedTime += Time.deltaTime;
+
+            if (stoppedTime > 0.5f)
+            {
+                // Reset car to the last waypoint position
+                transform.position = lastWaypointPosition;
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                stoppedTime = 0f; // Reset stopped time counter
+            }
+        }
+        else
+        {
+            stoppedTime = 0f; // Reset if car is moving
+        }
+    }
 }
+
 
