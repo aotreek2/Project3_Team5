@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 5841100760348105107}
   - component: {fileID: 5368615577885871018}
   - component: {fileID: 2933337737694332709}
-  - component: {fileID: 5079262951903572096}
+  - component: {fileID: 2281378520956397113}
   m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
@@ -119,8 +119,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5079262951903572096
-BoxCollider:
+--- !u!64 &2281378520956397113
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -137,9 +137,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.028689455, y: 0.012, z: 0.0154681}
-  m_Center: {x: 9.313228e-10, y: -2.48306e-11, z: 0.00010181686}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 9067332987797314631, guid: 510ba3662d6a4d94ab81d98dee63fc5c, type: 3}
 --- !u!1 &3240668662431807353
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ac8477cb18409468232b20785167ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pathManager: {fileID: 0}
   path: {fileID: 0}
   maxSpeed: 77
   acceleration: 4000
