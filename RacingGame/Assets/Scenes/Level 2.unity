@@ -1343,7 +1343,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1533482550}
         m_TargetAssemblyTypeName: RaceManager, Assembly-CSharp
         m_MethodName: SetUpRace
         m_Mode: 1
@@ -1393,6 +1393,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737808782}
   m_CullTransparentMesh: 1
+--- !u!114 &853922028 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 709220033404684828, guid: c6d5cf83f8de2b24bbb2bbd1ea7a46d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 4630198797112388316}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a43f0762b1ce918418a3990d9596d336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &880533695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2099,12 +2111,12 @@ MonoBehaviour:
   - {fileID: 261454088}
   - {fileID: 880533696}
   player: {fileID: 906731643}
-  trapPanel: {fileID: 0}
-  trapCamera: {fileID: 0}
+  trapPanel: {fileID: 2013001299}
+  trapCamera: {fileID: 1468798418}
   playerCamera: {fileID: 906731644}
-  finishLine: {fileID: 0}
-  results: {fileID: 0}
-  countdownTxt: {fileID: 0}
+  finishLine: {fileID: 1156925925}
+  results: {fileID: 853922028}
+  countdownTxt: {fileID: 1382143902}
 --- !u!4 &1533482551
 Transform:
   m_ObjectHideFlags: 0
