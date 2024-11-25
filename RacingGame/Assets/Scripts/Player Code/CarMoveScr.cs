@@ -45,6 +45,7 @@ public class CarMoveScr : MonoBehaviour
     [SerializeField] float maxSteerAngle = 30.0f;
 
     [SerializeField] Vector3 _centerOfMass;
+    [SerializeField] float speedOffset;
 
     float moveInput;
     float steerInput;
@@ -112,11 +113,9 @@ public class CarMoveScr : MonoBehaviour
 
         if (mphNeedle != null)
         {
-            //Set mph needle rotation go from from 135 to -110 based on speed. Goodluck
-
-           // mphNeedle.transform.rotation.z = 135 - 
+            mphNeedle.transform.rotation = Quaternion.Euler(0,0,-mph*1.375f + 110);
         }
-       // Debug.Log(mph);
+       //Debug.Log(mph);
     }
     /*void UpdateDamper() //used to modify multipliers as the car's speed changes
     {
