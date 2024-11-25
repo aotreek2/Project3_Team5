@@ -10,7 +10,7 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private GameObject[] aiRacers;
     [SerializeField] private GameObject player, trapPanel;
     [SerializeField] private Camera trapCamera;
-    [SerializeField] private GameObject playerCamera;
+    private GameObject playerCamera;
     private int countdown = 3;
     [SerializeField] private Collider finishLine;
     [SerializeField] private ResultManager results;
@@ -44,7 +44,7 @@ public class RaceManager : MonoBehaviour
 
     public void SetUpRace()
     {
-        playerCamera.GetComponent<CarCameraController>().ConfineCursor();
+        GameObject.Find("Virtual Camera").GetComponent<CarCamHandler>().ConfineCursor();
         trapCamera.enabled = false;
         trapCamera.GetComponent<AudioListener>().enabled = false;
         playerCamera.GetComponent<AudioListener>().enabled = true;

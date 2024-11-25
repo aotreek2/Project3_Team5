@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using static CarMoveScr;
 
 public class CarCameraController : MonoBehaviour
 {
@@ -51,22 +53,6 @@ public class CarCameraController : MonoBehaviour
                 // Smoothly move the camera back to its initial position
                 transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * returnPositionSpeed);
             }
-        }
-    }
-
-    public void ConfineCursor()
-    {
-        // Confine the cursor to the game window and make it invisible
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
-    }
-
-    private void OnApplicationFocus(bool hasFocus)
-    {
-        // Confine the cursor when the game window is focused
-        if (hasFocus)
-        {
-            ConfineCursor();
         }
     }
 }
