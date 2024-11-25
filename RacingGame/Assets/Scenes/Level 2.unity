@@ -342,6 +342,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 134852957}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &134852960 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7887672883183338256, guid: d9f907ad406050e468bef914df505356,
+    type: 3}
+  m_PrefabInstance: {fileID: 134852957}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &205886039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,6 +1663,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: mphNeedle
+      value: 
+      objectReference: {fileID: 134852960}
     - target: {fileID: 4286914135661645727, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}
       propertyPath: m_TagString
