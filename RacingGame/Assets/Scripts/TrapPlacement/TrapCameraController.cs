@@ -10,16 +10,19 @@ public class TrapCameraController : MonoBehaviour
     [SerializeField] private float speed = 25;
     
     [Header("Game References")]
-    [SerializeField] private GameObject trap;
+    [SerializeField] private GameObject trapPreview;
+    [SerializeField] private GameObject[] traps;
     [SerializeField] private int trapsPlaced;
     [SerializeField] private TMP_Text trapsLeft;
     private Camera cam;
-    
+    private int trapIndex;
+
     private void Start()
     {
         cam = GetComponent<Camera>();
         Cursor.visible = true;
         trapsLeft.text = "Traps Left: " + (5 - trapsPlaced);
+        PreviewTrap();
     }
 
     void Update()
@@ -50,27 +53,49 @@ public class TrapCameraController : MonoBehaviour
         transform.position += direction * speed * Time.deltaTime;
     }
 
+    public void SwitchTraps()
+    {
+        trapIndex = (trapIndex + 1) % traps.Length;
+        trapPreview = traps[trapIndex];
+        trapPreview.GetComponent<Collider>().enabled = false;
+    }
+
+    private void PreviewTrap()
+    {
+        trapPreview = traps[trapIndex];
+
+        if (trapPreview != null)
+        {
+            trapPreview = Instantiate(traps[trapIndex]);
+            trapPreview.GetComponent<Collider>().enabled = false;
+        }
+    }
     private void PlaceTrap()
     {
-        if (Input.GetMouseButtonDown(0)) // Left mouse button click
+        Vector3 mousePosition = Input.mousePosition;
+        Ray ray = cam.ScreenPointToRay(mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo))
         {
-            if (EventSystem.current.IsPointerOverGameObject()) return;
+            float objectHeight = traps[trapIndex].GetComponent<Collider>().bounds.size.y;
+            float spawnOffset = objectHeight / 2f;
+            Vector3 spawnPosition = hitInfo.point + new Vector3(0, spawnOffset, 0);
+            Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+            trapPreview.transform.position = spawnPosition;
 
-            Vector3 mousePosition = Input.mousePosition;
-
-            // Convert mouse position to world position
-            Ray ray = cam.ScreenPointToRay(mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            if (Input.GetMouseButtonDown(0))
             {
-                float objectHeight = trap.GetComponent<Collider>().bounds.size.y;
-                float spawnOffset = objectHeight / 2f;
-                Vector3 spawnPosition = hitInfo.point + new Vector3(0, spawnOffset, 0);
-                Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
-                if(trapsPlaced < 5)
+                if (EventSystem.current.IsPointerOverGameObject()) return;
+
+                if (trapsPlaced < 5)
                 {
-                    Instantiate(trap, spawnPosition, spawnRotation);
+                    Instantiate(traps[trapIndex], spawnPosition, spawnRotation);
                     trapsPlaced += 1;
-                    trapsLeft.text = "Traps Left: " + (5 - trapsPlaced); 
+                    trapsLeft.text = "Traps Left: " + (5 - trapsPlaced);
+                }
+                if(trapsPlaced == 5)
+                {
+                    trapPreview.SetActive(false);
                 }
             }
         }
