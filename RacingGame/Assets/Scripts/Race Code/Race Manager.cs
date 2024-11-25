@@ -9,6 +9,7 @@ public class RaceManager : MonoBehaviour
     [Header("Game References")]
     [SerializeField] private GameObject[] aiRacers;
     [SerializeField] private GameObject player, trapPanel;
+    [SerializeField] GameObject speedometerPanel;
     [SerializeField] private Camera trapCamera;
     private GameObject playerCamera;
     private int countdown = 3;
@@ -32,6 +33,7 @@ public class RaceManager : MonoBehaviour
         InputManager playerInput = player.GetComponent<InputManager>();
         playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera");
         playerCamera.GetComponent<AudioListener>().enabled = false;
+        speedometerPanel.SetActive(false);
         playerInput.enabled = false;
         playerScript.enabled = false;
     }
@@ -49,6 +51,7 @@ public class RaceManager : MonoBehaviour
         trapCamera.GetComponent<AudioListener>().enabled = false;
         playerCamera.GetComponent<AudioListener>().enabled = true;
         trapPanel.SetActive(false);
+        speedometerPanel.SetActive(true);
         countdownTxt.enabled = true;
         StartCountdown();
     }
