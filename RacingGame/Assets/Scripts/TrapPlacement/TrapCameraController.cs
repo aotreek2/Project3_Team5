@@ -8,7 +8,10 @@ public class TrapCameraController : MonoBehaviour
 {
     [Header("Camera Settings")]
     [SerializeField] private float speed = 25;
-    
+    [SerializeField] private int minFOV = 15;
+    [SerializeField] private int maxFOV = 60;
+
+
     [Header("Game References")]
     [SerializeField] private GameObject trapPreview;
     [SerializeField] private GameObject[] traps;
@@ -29,6 +32,7 @@ public class TrapCameraController : MonoBehaviour
     {
         CamMovement();
         PlaceTrap();
+        SwitchTraps();
     }
 
     private void CamMovement()
@@ -51,13 +55,35 @@ public class TrapCameraController : MonoBehaviour
 
 
         transform.position += direction * speed * Time.deltaTime;
+
+        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+        cam.fieldOfView -= scrollInput * 10f;
+        cam.fieldOfView = Mathf.Clamp(cam.fieldOfView, minFOV, maxFOV);
     }
 
-    public void SwitchTraps()
+    private void SwitchTraps()
     {
-        trapIndex = (trapIndex + 1) % traps.Length;
-        trapPreview = traps[trapIndex];
-        trapPreview.GetComponent<Collider>().enabled = false;
+        trapIndex = Mathf.Clamp(trapIndex, 0, traps.Length);
+
+        if (trapsPlaced < 5)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                trapIndex = (trapIndex - 1) % traps.Length;
+                trapIndex = Mathf.Clamp(trapIndex, 0, traps.Length);
+                Destroy(trapPreview);
+                trapPreview = Instantiate(traps[trapIndex]);
+                trapPreview.GetComponent<Collider>().enabled = false;
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                trapIndex = (trapIndex + 1) % traps.Length;
+                trapIndex = Mathf.Clamp(trapIndex, 0, traps.Length);
+                Destroy(trapPreview);
+                trapPreview = Instantiate(traps[trapIndex]);
+                trapPreview.GetComponent<Collider>().enabled = false;
+            }
+        }
     }
 
     private void PreviewTrap()
