@@ -18,10 +18,11 @@ public class RaceManager : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private TMP_Text countdownTxt;
+    public string levelToLoad;
 
     void Start()
     {
-        countdownTxt.enabled = false;
+       // countdownTxt.enabled = false;
 
         foreach (GameObject ai in aiRacers)
         {
@@ -35,10 +36,16 @@ public class RaceManager : MonoBehaviour
     void Update()
     {
         CheckFinish();
+        /*float distance = Vector3.Distance(player.transform.position, finishLine.transform.position);
+        if(distance <= 30)
+        {
+            SceneManager.LoadScene(levelToLoad);
+        }*/
     }
 
     private void DelayedStart()
     {
+        /*
         player = GameObject.FindGameObjectWithTag("Player");
         CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
         InputManager playerInput = player.GetComponent<InputManager>();
@@ -46,7 +53,7 @@ public class RaceManager : MonoBehaviour
         playerCamera.GetComponent<AudioListener>().enabled = false;
         speedometerPanel.SetActive(false);
         playerInput.enabled = false;
-        playerScript.enabled = false;
+        playerScript.enabled = false; */
     }
 
     public void SetUpRace()
@@ -55,9 +62,9 @@ public class RaceManager : MonoBehaviour
         trapCamera.enabled = false;
         trapCamera.GetComponent<TrapCameraController>().enabled = false;
         trapCamera.GetComponent<AudioListener>().enabled = false;
-        playerCamera.GetComponent<AudioListener>().enabled = true;
+       // playerCamera.GetComponent<AudioListener>().enabled = true;
         trapPanel.SetActive(false);
-        speedometerPanel.SetActive(true);
+        //speedometerPanel.SetActive(true);
         countdownTxt.enabled = true;
         StartCountdown();
     }
@@ -90,21 +97,21 @@ public class RaceManager : MonoBehaviour
             aiScript.enabled = true;
         }
 
-        CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
-        InputManager playerInput = player.GetComponent<InputManager>();
-        playerInput.enabled = true;
-        playerScript.enabled = true;
+        //CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
+       // InputManager playerInput = player.GetComponent<InputManager>();
+      //  playerInput.enabled = true;
+       // playerScript.enabled = true;
     }
     private void CheckFinish()
     {
-        CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
+       /* CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
         if (finishLine.bounds.Intersects(player.GetComponent<Collider>().bounds))
         {
             results.FinishRace(playerScript.carName, "Player");
             results.AddRacers(playerScript.gameObject);
             SceneManager.LoadScene("RaceResults");
             return;
-        }
+        } */
 
         foreach (GameObject ai in aiRacers)
         {

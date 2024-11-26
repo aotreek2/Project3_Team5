@@ -50,5 +50,23 @@ public class PauseController : MonoBehaviour
         Time.timeScale = 1f; // Ensure the game resumes if going back to the main menu
         SceneManager.LoadScene("Main_Menu"); // Load your main menu scene
     }
+
+    public void LevelOneLoad()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Level 1");
+    }
+
+    public void LevelTwoLoad()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Level 2");
+    }
+
+    public void LevelThreeLoad()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Level 3");
+    }
 }
 

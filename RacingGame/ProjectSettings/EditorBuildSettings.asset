@@ -9,14 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Main_Menu.unity
     guid: 7429676b1e5284d47a32b1baed76a5d1
   - enabled: 1
-    path: Assets/Scenes/DevTomL2.unity
-    guid: 21e6c143d968dbe4487a90f5a92561d7
-  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: dbae8b99b9c8d434fa17cb28ee1589fe
   - enabled: 1
     path: Assets/Scenes/Level 2.unity
     guid: 1dc57073aea396346a45c6763fd058d3
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: 4bd2eab3442143e4985ce99ec2c09c8a
   - enabled: 1
     path: Assets/Scenes/RaceResults.unity
     guid: fcda3ecf56e3e45449bcde40abb24ca0
