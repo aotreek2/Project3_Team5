@@ -16,7 +16,7 @@ public class TrapCameraController : MonoBehaviour
     [SerializeField] private GameObject trapPreview;
     [SerializeField] private GameObject[] traps;
     [SerializeField] private int trapsPlaced;
-    [SerializeField] private TMP_Text trapsLeft;
+    [SerializeField] private TMP_Text trapsLeft, currentTrap;
     private Camera cam;
     private int trapIndex;
 
@@ -73,6 +73,7 @@ public class TrapCameraController : MonoBehaviour
                 trapIndex = Mathf.Clamp(trapIndex, 0, traps.Length);
                 Destroy(trapPreview);
                 trapPreview = Instantiate(traps[trapIndex]);
+                currentTrap.text = "Trap: " + traps[trapIndex].name;
                 trapPreview.GetComponent<Collider>().enabled = false;
             }
             if (Input.GetKeyDown(KeyCode.E))
@@ -81,6 +82,7 @@ public class TrapCameraController : MonoBehaviour
                 trapIndex = Mathf.Clamp(trapIndex, 0, traps.Length);
                 Destroy(trapPreview);
                 trapPreview = Instantiate(traps[trapIndex]);
+                currentTrap.text = "Trap: " + traps[trapIndex].name;
                 trapPreview.GetComponent<Collider>().enabled = false;
             }
         }
@@ -89,6 +91,7 @@ public class TrapCameraController : MonoBehaviour
     private void PreviewTrap()
     {
         trapPreview = traps[trapIndex];
+        currentTrap.text = "Trap: " + traps[trapIndex].name;
 
         if (trapPreview != null)
         {

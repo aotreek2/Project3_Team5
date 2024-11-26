@@ -68,18 +68,55 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConcreteWall
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 699865fcc8b5345438fcf1c82745ce4f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 3451118302482216456, guid: 699865fcc8b5345438fcf1c82745ce4f,
         type: 3}
       propertyPath: m_Convex
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3451118302482216456, guid: 699865fcc8b5345438fcf1c82745ce4f,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3451118302482216456, guid: 699865fcc8b5345438fcf1c82745ce4f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 699865fcc8b5345438fcf1c82745ce4f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4733901593913005058}
   m_SourcePrefab: {fileID: 100100000, guid: 699865fcc8b5345438fcf1c82745ce4f, type: 3}
+--- !u!1 &780449450471699882 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 699865fcc8b5345438fcf1c82745ce4f,
+    type: 3}
+  m_PrefabInstance: {fileID: 438502219467098363}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &4733901593913005058
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780449450471699882}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.5, y: 1.9090453, z: 0.81982625}
+  m_Center: {x: 0, y: 0.95452267, z: 0}

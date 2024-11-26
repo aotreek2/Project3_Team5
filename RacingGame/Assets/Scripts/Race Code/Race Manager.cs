@@ -48,6 +48,7 @@ public class RaceManager : MonoBehaviour
     {
         GameObject.Find("Virtual Camera").GetComponent<CarCamHandler>().ConfineCursor();
         trapCamera.enabled = false;
+        trapCamera.GetComponent<TrapCameraController>().enabled = false;
         trapCamera.GetComponent<AudioListener>().enabled = false;
         playerCamera.GetComponent<AudioListener>().enabled = true;
         trapPanel.SetActive(false);
@@ -70,11 +71,10 @@ public class RaceManager : MonoBehaviour
             countdown--;
         }
 
-        // Final message (optional)
         countdownTxt.text = "Go!";
         BeginRace();
         yield return new WaitForSeconds(1f);
-        countdownTxt.text = ""; // Clear the text after the countdown ends
+        countdownTxt.text = ""; 
     }
 
     public void BeginRace()

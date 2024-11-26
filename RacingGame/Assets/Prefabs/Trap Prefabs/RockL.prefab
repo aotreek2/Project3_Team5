@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1510297292095400933}
   - component: {fileID: 5909060440958023056}
   - component: {fileID: 7127745988925887245}
-  - component: {fileID: 4388613504679051138}
+  - component: {fileID: 1238813743675545599}
   m_Layer: 0
   m_Name: RockL
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4388613504679051138
-MeshCollider:
+--- !u!135 &1238813743675545599
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -101,8 +101,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6202733943540467012, guid: 0763138637dab9c47af40917a0b67849, type: 3}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2.7232447
+  m_Center: {x: -0.07862651, y: 1.9608526, z: -0.41082585}

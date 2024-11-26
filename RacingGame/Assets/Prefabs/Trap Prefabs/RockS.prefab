@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3201547216816943201}
   - component: {fileID: 2885112248818238226}
   - component: {fileID: 4229572886458882478}
-  - component: {fileID: 7979535564543551367}
+  - component: {fileID: -4641857726385674328}
   m_Layer: 0
   m_Name: RockS
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7979535564543551367
-MeshCollider:
+--- !u!135 &-4641857726385674328
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +102,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2827071868395191951, guid: 0763138637dab9c47af40917a0b67849, type: 3}
+  serializedVersion: 3
+  m_Radius: 0.79956996
+  m_Center: {x: 0.11506641, y: 0.7226468, z: -0.11198813}

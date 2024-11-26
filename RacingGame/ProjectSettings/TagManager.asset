@@ -7,6 +7,11 @@ TagManager:
   - Racers
   - PlayerCamera
   - Placements
+  - Wall
+  - Mine
+  - Rock
+  - Spike
+  - Tires
   layers:
   - Default
   - TransparentFX

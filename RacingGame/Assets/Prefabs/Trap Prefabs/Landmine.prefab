@@ -73,18 +73,57 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 118637f1f3ff0b24c9a958e526480a12,
+        type: 3}
+      propertyPath: m_TagString
+      value: Mine
+      objectReference: {fileID: 0}
     - target: {fileID: 3451118302482216456, guid: 118637f1f3ff0b24c9a958e526480a12,
         type: 3}
       propertyPath: m_Convex
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3451118302482216456, guid: 118637f1f3ff0b24c9a958e526480a12,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3451118302482216456, guid: 118637f1f3ff0b24c9a958e526480a12, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 118637f1f3ff0b24c9a958e526480a12,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 708283076290004973}
   m_SourcePrefab: {fileID: 100100000, guid: 118637f1f3ff0b24c9a958e526480a12, type: 3}
+--- !u!1 &8583748329642069497 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 118637f1f3ff0b24c9a958e526480a12,
+    type: 3}
+  m_PrefabInstance: {fileID: 8925835881389371560}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &708283076290004973
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8583748329642069497}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7674711
+  m_Height: 1.5349422
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.13251424, z: 0}
