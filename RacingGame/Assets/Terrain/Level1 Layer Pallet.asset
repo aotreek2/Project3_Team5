@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Level1 Layer Pallet
   m_EditorClassIdentifier: 
   PaletteLayers:
+  - {fileID: 8574412962073106934, guid: cf10f34552284de46aa43350b22c1832, type: 2}
+  - {fileID: 8574412962073106934, guid: a4e566e1f5c06b54e8dca5ca99f250d9, type: 2}
   - {fileID: 8574412962073106934, guid: bf1dc1a87e0e512428b5fd642f76aa1a, type: 2}
