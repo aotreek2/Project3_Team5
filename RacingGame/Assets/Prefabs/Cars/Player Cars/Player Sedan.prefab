@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 26245563129438609}
   m_Layer: 3
   m_Name: Player Sedan
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -507,6 +507,7 @@ MonoBehaviour:
   turnSensitivity: 1
   maxSteerAngle: 35
   _centerOfMass: {x: 0, y: -1, z: 0}
+  speedOffset: 0
   mphNeedle: {fileID: 0}
   carName: Player
 --- !u!114 &26245563129438609

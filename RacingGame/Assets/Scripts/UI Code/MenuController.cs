@@ -8,76 +8,50 @@ using Cinemachine;
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject helpPanel, creditsPanel, leftButton, rightButton;
+    public GameObject helpPanel, creditsPanel, mainMenuPanel, carSelectionPanel, leftButton, rightButton;
     [SerializeField] private TMP_Text helpTitle, helpText;
-    public CinemachineDollyCart dollyCart;
-    public CinemachinePath initialPath;  // Side view path
-    public CinemachinePath mainPath;     // Track path after selecting a car
-    public float speed = 5f;
-
-    private bool movingForward = false;
-    private bool movingBackward = false;
+    [SerializeField] private Button sedanSelect, coupeSelect, truckSelect, startGameButton;
     private Scene scene;
     void Start()
     {
         scene = SceneManager.GetActiveScene();
+        startGameButton.interactable = false;
 
         if(scene.name == "Main_Menu")
         {
+            mainMenuPanel.gameObject.SetActive(true);
+            carSelectionPanel.gameObject.SetActive(false);
             helpPanel.gameObject.SetActive(false);
             creditsPanel.gameObject.SetActive(false);
+
             leftButton.gameObject.SetActive(false);
         }
-
-        // Set initial path to the side view
-        dollyCart.m_Path = initialPath;
-        dollyCart.m_Position = 0f;
-        dollyCart.m_Speed = 0f;  // Start with speed 0 to keep it stationary
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Stop the camera when it reaches the end of the path (either forward or backward)
-        if (movingForward && dollyCart.m_Position >= dollyCart.m_Path.PathLength)
-        {
-            dollyCart.m_Speed = 0f;
-            movingForward = false;
-        }
-        else if (movingBackward && dollyCart.m_Position <= 0f)
-        {
-            dollyCart.m_Speed = 0f;
-            movingBackward = false;
-        }
+    
     }
     public void OnPlayButtonClicked()
     {
-        dollyCart.m_Path = mainPath;
-        movingForward = true;
-        movingBackward = false;
-        dollyCart.m_Speed = speed;  // Set speed to move forward
-       // SceneManager.LoadScene(scene.buildIndex + 1);
-    }
-    public void OnBackToMainMenu()
-    {
-        dollyCart.m_Path = initialPath;
-        movingForward = false;
-        movingBackward = true;
-        dollyCart.m_Speed = -speed;  // Set speed to move backward
+        SceneManager.LoadScene(scene.buildIndex + 1);
     }
     public void OnHelpButtonClicked()
     {
         helpPanel.gameObject.SetActive(true);
+        mainMenuPanel.gameObject.SetActive(false);
     }
     public void OnCreditsButtonClicked()
     {
         creditsPanel.gameObject.SetActive(true);
-
+        mainMenuPanel.gameObject.SetActive(false);
     }
     public void OnBackButtonClicked()
     {
         helpPanel.gameObject.SetActive(false);
         creditsPanel.gameObject.SetActive(false);
+        mainMenuPanel.gameObject.SetActive(true);
     }
 
     public void OnRightButtonClicked()
@@ -97,6 +71,33 @@ public class MenuController : MonoBehaviour
 
     }
 
+    public void OnSedanSelect()
+    {
+        sedanSelect.interactable = false;
+        coupeSelect.interactable = true;
+        truckSelect.interactable = true;
+        startGameButton.interactable = true;
+        PlayerPrefs.SetString("SelectedCar", "Sedan");
+        PlayerPrefs.Save();
+    }
+    public void OnCoupeSelect()
+    {
+        sedanSelect.interactable = true;
+        coupeSelect.interactable = false;
+        truckSelect.interactable = true;
+        startGameButton.interactable = true;
+        PlayerPrefs.SetString("SelectedCar", "Coupe");
+        PlayerPrefs.Save();
+    }
+    public void OnTruckSelect()
+    {
+        sedanSelect.interactable = true;
+        coupeSelect.interactable = true;
+        truckSelect.interactable = false;
+        startGameButton.interactable = true;
+        PlayerPrefs.SetString("SelectedCar", "Truck");
+        PlayerPrefs.Save();
+    }
     public void OnQuitButtonClicked()
     {
         Application.Quit();

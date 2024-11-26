@@ -48,7 +48,7 @@ public class PauseController : MonoBehaviour
     public void LoadMainMenu()
     {
         Time.timeScale = 1f; // Ensure the game resumes if going back to the main menu
-        SceneManager.LoadScene("MainMenu"); // Load your main menu scene
+        SceneManager.LoadScene("Main_Menu"); // Load your main menu scene
     }
 }
 
