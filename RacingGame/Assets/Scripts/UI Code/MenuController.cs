@@ -23,8 +23,6 @@ public class MenuController : MonoBehaviour
             carSelectionPanel.gameObject.SetActive(false);
             helpPanel.gameObject.SetActive(false);
             creditsPanel.gameObject.SetActive(false);
-
-            leftButton.gameObject.SetActive(false);
         }
     }
 
@@ -57,7 +55,8 @@ public class MenuController : MonoBehaviour
     public void OnRightButtonClicked()
     {
         helpTitle.text = "Controls";
-        helpText.text = "ASDW - Move <br> Shift/Space - Break <br> P/Escape - Pause";
+        helpText.text = "ASDW - Move <br> Shift/Space - Break, Move Faster (Trap Camera) <br> P/Escape " +
+        "- Pause <br> Rotate  (Trap Camera)  - Q & E <br> Zoom in (Trap Camera) - Mouse Scroll Wheel <br> Place Trap (Trap Camera) - LMB";
         rightButton.gameObject.SetActive(false);
         leftButton.gameObject.SetActive(true);
     }

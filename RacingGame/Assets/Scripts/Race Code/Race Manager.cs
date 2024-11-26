@@ -28,7 +28,7 @@ public class RaceManager : MonoBehaviour
             AICarController aiScript = ai.GetComponent<AICarController>();
             aiScript.enabled = false;
         }
-        Invoke("DelayedStart", .1f);
+        Invoke("DelayedStart", .5f);
     }
 
     // Update is called once per frame

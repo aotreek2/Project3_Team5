@@ -153,7 +153,8 @@ MonoBehaviour:
   speed: 50
   minFOV: 15
   maxFOV: 60
-  trapPreview: {fileID: 0}
+  trapPreview: {fileID: 4378581907943785017, guid: f1155cb445279b14683737819f9dc579,
+    type: 3}
   traps:
   - {fileID: 780449450471699882, guid: 52d3f5db7a7aeaa48b14b1d08a356c03, type: 3}
   - {fileID: 8583748329642069497, guid: 97f35bea13ca30b4ca6db491384ecda6, type: 3}
