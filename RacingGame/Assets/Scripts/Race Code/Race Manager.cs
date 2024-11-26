@@ -28,7 +28,18 @@ public class RaceManager : MonoBehaviour
             AICarController aiScript = ai.GetComponent<AICarController>();
             aiScript.enabled = false;
         }
+        Invoke("DelayedStart", .1f);
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        CheckFinish();
+    }
+
+    private void DelayedStart()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
         CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
         InputManager playerInput = player.GetComponent<InputManager>();
         playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera");
@@ -36,12 +47,6 @@ public class RaceManager : MonoBehaviour
         speedometerPanel.SetActive(false);
         playerInput.enabled = false;
         playerScript.enabled = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        CheckFinish();
     }
 
     public void SetUpRace()
