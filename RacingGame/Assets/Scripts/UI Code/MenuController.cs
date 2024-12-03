@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour
 {
     public GameObject helpPanel, creditsPanel, mainMenuPanel, carSelectionPanel, leftButton, rightButton;
     [SerializeField] private TMP_Text helpTitle, helpText;
+    [SerializeField] private TMP_InputField nameInput;
     [SerializeField] private Button sedanSelect, coupeSelect, truckSelect, startGameButton;
     private Scene scene;
     void Start()
@@ -68,6 +69,13 @@ public class MenuController : MonoBehaviour
         leftButton.gameObject.SetActive(false);
         rightButton.gameObject.SetActive(true);
 
+    }
+
+    public void InputName()
+    {
+        string playerName = nameInput.text;
+        PlayerPrefs.SetString("Player Name", playerName);
+        PlayerPrefs.Save();
     }
 
     public void OnSedanSelect()

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class ResultManager : MonoBehaviour
 {
     [SerializeField] private List<string> raceResults = new List<string>();
-    [SerializeField] public GameObject[] racers, spawnPoints;
+    [SerializeField] public List<GameObject> racers, spawnPoints = new List<GameObject>();
 
     Scene currentScene;
 
@@ -19,22 +19,27 @@ public class ResultManager : MonoBehaviour
     private void Start()
     {
         currentScene = SceneManager.GetActiveScene();
+    }
 
-        for (int i = 0; i <= 3; i++)
-        {
-            GameObject spawn = GameObject.FindGameObjectWithTag("Placements");
-            spawnPoints.Append(spawn);
+    private void Update()
+    {
+        DisplayResults();
+    }
 
-        }
 
+    private void DisplayResults()
+    {
         if (currentScene.name == "RaceResults")
         {
-            for (int i = 0; i < racers.Count(); i++)
+            for (int i = 0; i <= 3; i++)
             {
-                foreach (GameObject racer in racers)
-                {
-                    racer.transform.position = spawnPoints[i].transform.position;
-                }
+                
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                Instantiate(racers[i]);
+                racers[i].transform.position = spawnPoints[i].transform.position;
             }
         }
     }
@@ -51,7 +56,7 @@ public class ResultManager : MonoBehaviour
 
     public void AddRacers(GameObject racerModel)
     {
-        racers.Append(racerModel);
+        racers.Add(racerModel);
     }
 
     public List<string> GetRaceResults()

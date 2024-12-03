@@ -5,8 +5,14 @@ using UnityEngine;
 public class PlayerSpawn : MonoBehaviour
 {
     [SerializeField] GameObject sedanPrefab, coupePrefab, truckPrefab;
-    private GameObject currentCar;
+    [SerializeField] private RaceManager raceManager;
+    public GameObject currentCar;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+    }
+
     void Start()
     {
         string selectedCar = PlayerPrefs.GetString("SelectedCar", "Coupe");
