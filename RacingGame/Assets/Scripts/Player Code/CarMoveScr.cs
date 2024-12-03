@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static CarMoveScr;
@@ -100,23 +101,28 @@ public class CarMoveScr : MonoBehaviour
     {
         foreach (Wheel wheel in wheels)
         {
-            if (accelerationDamper < 1)
+            if (moveInput == 0)
             {
-                wheel.wheelCollider.motorTorque = moveInput * 500 * maxAcceleration * Time.deltaTime;
+                if (mph > 0.2f)
+                {
+                    float direction = Mathf.Clamp(wheel.wheelCollider.rpm, -1, 1);
+                    wheel.wheelCollider.motorTorque = -direction * 2 * (maxAcceleration - accelerationDamper); //changed from deltatime to fixed for physics
+                }
             }
             else
             {
-                wheel.wheelCollider.motorTorque = moveInput * 500 * (maxAcceleration - accelerationDamper) * Time.deltaTime;
+                wheel.wheelCollider.motorTorque = moveInput * 500 * (maxAcceleration - accelerationDamper) * Time.fixedDeltaTime; //changed from deltatime to fixed for physics
             }
         }
         mph = Mathf.Round(carRb.velocity.magnitude * 2.237f * 10) / 10;
-
+        Debug.Log(wheels[0].wheelCollider.rpm);
         if (mphNeedle != null)
         {
             mphNeedle.transform.rotation = Quaternion.Euler(0,0,-mph*1.375f + 110);
         }
        //Debug.Log(mph);
     }
+
     /*void UpdateDamper() //used to modify multipliers as the car's speed changes
     {
         //Debug.Log(carRb.velocity.magnitude);
@@ -196,7 +202,7 @@ public class CarMoveScr : MonoBehaviour
         }
     }
 
-    public void Brake(bool braking)
+    public void ApplyBrake(bool braking)
     {
         if (braking)
         {
@@ -204,7 +210,7 @@ public class CarMoveScr : MonoBehaviour
             {
                 if (wheel.axel == Axel.Rear) //only front wheels
                 {
-                    wheel.wheelCollider.brakeTorque = 300 * brakeAcceleration * Time.deltaTime;
+                    wheel.wheelCollider.brakeTorque = 300 * brakeAcceleration * Time.fixedDeltaTime; //changed from deltatime to fixed for physics
                 }
             }
         }

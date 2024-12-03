@@ -17,8 +17,8 @@ public class InputManager : MonoBehaviour
         moveScr = gameObject.GetComponent<CarMoveScr>();
         camHandler = GameObject.Find("PlayerCam").GetComponent<CarCamHandler>();
 
-        carActions.Stop.started += ctx => moveScr.Brake(true);
-        carActions.Stop.canceled += ctx => moveScr.Brake(false);
+        carActions.Stop.started += ctx => moveScr.ApplyBrake(true);
+        carActions.Stop.canceled += ctx => moveScr.ApplyBrake(false);
     }
     private void Start()
     {
