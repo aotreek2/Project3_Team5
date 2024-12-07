@@ -34,6 +34,10 @@ public class AICarController : MonoBehaviour
     private float stoppedTime = 0f;
     private Vector3 lastWaypointPosition;
 
+    public AudioSource engineAudioSource;
+    public float minPitch = 0.8f; // Pitch at zero speed
+    public float maxPitch = 2.0f; // Pitch at max speed
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -65,6 +69,7 @@ public class AICarController : MonoBehaviour
         FollowPath();
         UpdateWheelTransforms();
         CheckIfStopped();
+        AdjustEngineSound();
     }
 
     private void FollowPath()
@@ -128,7 +133,10 @@ public class AICarController : MonoBehaviour
 
     private void ApplyMotor()
     {
-        float targetTorque = rb.velocity.magnitude < currentSpeed ? acceleration : 0;
+        // Calculate a rational function for smooth acceleration
+        float speedRatio = rb.velocity.magnitude / maxSpeed;
+        float targetTorque = speedRatio < 1f ? acceleration * (1f - Mathf.Pow(speedRatio, 2)) : 0f;
+
         frontLeftWheel.motorTorque = targetTorque;
         frontRightWheel.motorTorque = targetTorque;
     }
@@ -220,6 +228,15 @@ public class AICarController : MonoBehaviour
         {
             stoppedTime = 0f; // Reset if car is moving
         }
+    }
+
+    private void AdjustEngineSound()
+    {
+        if (engineAudioSource == null) return;
+
+        // Calculate the pitch based on the car's current speed
+        float speedRatio = rb.velocity.magnitude / maxSpeed;
+        engineAudioSource.pitch = Mathf.Lerp(minPitch, maxPitch, speedRatio);
     }
 }
 
