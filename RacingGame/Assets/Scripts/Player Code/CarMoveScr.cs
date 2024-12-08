@@ -56,6 +56,10 @@ public class CarMoveScr : MonoBehaviour
 
     private Rigidbody carRb;
 
+    public bool start = false;
+    public AudioSource engineAudioSource;
+    public float minPitch, maxPitch;
+
     //Car UI vars
     [SerializeField] GameObject mphNeedle;
     float minZRot = 135;
@@ -68,7 +72,10 @@ public class CarMoveScr : MonoBehaviour
         foreach (Wheel wheel in wheels)
         {
             wheel.wheelCollider.ConfigureVehicleSubsteps(5, 12, 15);
+            wheel.wheelCollider.motorTorque = 0;
         }
+
+        
     }
 
     void Update()
@@ -79,6 +86,7 @@ public class CarMoveScr : MonoBehaviour
     void FixedUpdate()
     {
         //Move();
+        AdjustEngineSound();
         RotateWheelMesh();
         UpdateDamper();
         UpdateGear();
@@ -94,7 +102,10 @@ public class CarMoveScr : MonoBehaviour
     {
         moveInput = input.y; // acceleration & deceleration -1 to 1
         steerInput = input.x;// turning -1 to 1
-        Move();
+       if(start)
+       {
+          Move();
+       }
     }
 
     void Move()
@@ -230,5 +241,14 @@ public class CarMoveScr : MonoBehaviour
             wheel.wheelCollider.GetWorldPose(out Vector3 pos, out Quaternion rot);
             wheel.wheelObj.transform.SetPositionAndRotation(pos, rot);
         }
+    }
+
+    private void AdjustEngineSound()
+    {
+        if (engineAudioSource == null) return;
+
+        // Calculate the pitch based on the car's current speed
+        float speedRatio = carRb.velocity.magnitude / maxSpeed;
+        engineAudioSource.pitch = Mathf.Lerp(minPitch, maxPitch, speedRatio);
     }
 }

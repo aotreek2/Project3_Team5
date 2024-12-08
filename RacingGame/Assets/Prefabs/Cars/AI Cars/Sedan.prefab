@@ -176,7 +176,7 @@ Transform:
   - {fileID: 1066469339718299002}
   m_Father: {fileID: 8058209719009913281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3416239478472177389
+--- !u!1 &6255608203590321055
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,8 +184,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3149901543451453193}
-  - component: {fileID: 2755499466981069470}
+  - component: {fileID: 4758784022118213}
+  - component: {fileID: 7647937235818135813}
   m_Layer: 0
   m_Name: Exhaust sound
   m_TagString: Untagged
@@ -193,28 +193,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3149901543451453193
+--- !u!4 &4758784022118213
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3416239478472177389}
+  m_GameObject: {fileID: 6255608203590321055}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.630005, y: -0.88500005, z: -0.65537643}
+  m_LocalPosition: {x: 0, y: -0.5130001, z: -2.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 166089488414538838}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &2755499466981069470
+--- !u!82 &7647937235818135813
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3416239478472177389}
+  m_GameObject: {fileID: 6255608203590321055}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -229,9 +229,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 14.96
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -247,6 +247,24 @@ AudioSource:
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.21143988
+      value: 0.38656586
+      inSlope: -2.0025432
+      outSlope: -2.0025432
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.2471512
+    - serializedVersion: 3
+      time: 0.49389905
+      value: 0.122051224
+      inSlope: -0.4568048
+      outSlope: -0.4568048
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.3236033
     - serializedVersion: 3
       time: 1
       value: 0
@@ -264,7 +282,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -371,7 +389,7 @@ Transform:
   m_Children:
   - {fileID: 5841100760348105107}
   - {fileID: 8058209719009913281}
-  - {fileID: 3149901543451453193}
+  - {fileID: 4758784022118213}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8027299704754656942
@@ -410,7 +428,7 @@ MonoBehaviour:
   rearRightTransform: {fileID: 4486607594798537910}
   currentSpeed: 0
   aiName: Sedan
-  engineAudioSource: {fileID: 0}
+  engineAudioSource: {fileID: 7647937235818135813}
   minPitch: 0.8
   maxPitch: 2
 --- !u!54 &9029458603503811185
