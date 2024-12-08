@@ -330,7 +330,7 @@ MonoBehaviour:
     width: 0.2
   m_Looped: 0
   m_Waypoints:
-  - position: {x: 220, y: 0, z: 30}
+  - position: {x: 222.5, y: 0, z: 40}
     roll: 0
   - position: {x: 235.56517, y: 0, z: 381.3736}
     roll: 0
@@ -593,6 +593,7 @@ MonoBehaviour:
   trapCamera: {fileID: 472008683}
   finishLine: {fileID: 648543839}
   results: {fileID: 496223295}
+  playerName: 
   countdownTxt: {fileID: 729877985}
   levelToLoad: Level 2
 --- !u!4 &449631415
@@ -634,7 +635,7 @@ PrefabInstance:
     - target: {fileID: 166089488414538838, guid: b5792d4db488e0b45afd421a40c521e8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 230.09
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: 166089488414538838, guid: b5792d4db488e0b45afd421a40c521e8,
         type: 3}
@@ -644,7 +645,7 @@ PrefabInstance:
     - target: {fileID: 166089488414538838, guid: b5792d4db488e0b45afd421a40c521e8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 166089488414538838, guid: b5792d4db488e0b45afd421a40c521e8,
         type: 3}
@@ -1100,7 +1101,7 @@ PrefabInstance:
     - target: {fileID: 1818855370702739329, guid: 8c16883c650319449a2e0f26dcd0eabd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 235.17
+      value: 237.5
       objectReference: {fileID: 0}
     - target: {fileID: 1818855370702739329, guid: 8c16883c650319449a2e0f26dcd0eabd,
         type: 3}
@@ -1110,7 +1111,7 @@ PrefabInstance:
     - target: {fileID: 1818855370702739329, guid: 8c16883c650319449a2e0f26dcd0eabd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1818855370702739329, guid: 8c16883c650319449a2e0f26dcd0eabd,
         type: 3}
@@ -1508,7 +1509,7 @@ PrefabInstance:
     - target: {fileID: 5788810335751438206, guid: f0168c3b4496d9e47818fae86103d0bc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 224.07
+      value: 222.5
       objectReference: {fileID: 0}
     - target: {fileID: 5788810335751438206, guid: f0168c3b4496d9e47818fae86103d0bc,
         type: 3}
@@ -1518,7 +1519,7 @@ PrefabInstance:
     - target: {fileID: 5788810335751438206, guid: f0168c3b4496d9e47818fae86103d0bc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5788810335751438206, guid: f0168c3b4496d9e47818fae86103d0bc,
         type: 3}
@@ -1607,7 +1608,7 @@ MonoBehaviour:
     width: 0.2
   m_Looped: 0
   m_Waypoints:
-  - position: {x: 235, y: 0, z: 30}
+  - position: {x: 237.5, y: 0, z: 40}
     roll: 0
   - position: {x: 230.10959, y: 0, z: 381.3736}
     roll: 0
@@ -2372,7 +2373,7 @@ MonoBehaviour:
     width: 0.2
   m_Looped: 0
   m_Waypoints:
-  - position: {x: 242.5, y: 0, z: 30}
+  - position: {x: 245, y: 0, z: 40}
     roll: 0
   - position: {x: 236.34895, y: 0, z: 381.3736}
     roll: 0
@@ -3543,6 +3544,8 @@ MonoBehaviour:
     type: 3}
   truckPrefab: {fileID: 8770784273822695785, guid: 4e1abe12fe51b6e4ba87c2e2ab34ef18,
     type: 3}
+  raceManager: {fileID: 0}
+  currentCar: {fileID: 0}
 --- !u!4 &1534100002
 Transform:
   m_ObjectHideFlags: 0
@@ -3552,7 +3555,7 @@ Transform:
   m_GameObject: {fileID: 1534100000}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 250, y: 1, z: 30}
+  m_LocalPosition: {x: 238.96, y: 1, z: 59.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3943,7 +3946,7 @@ PrefabInstance:
     - target: {fileID: 5788810335751438206, guid: f0168c3b4496d9e47818fae86103d0bc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 241.10664
+      value: 245
       objectReference: {fileID: 0}
     - target: {fileID: 5788810335751438206, guid: f0168c3b4496d9e47818fae86103d0bc,
         type: 3}
@@ -3953,7 +3956,7 @@ PrefabInstance:
     - target: {fileID: 5788810335751438206, guid: f0168c3b4496d9e47818fae86103d0bc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.72475
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5788810335751438206, guid: f0168c3b4496d9e47818fae86103d0bc,
         type: 3}
@@ -4826,7 +4829,7 @@ MonoBehaviour:
     width: 0.2
   m_Looped: 0
   m_Waypoints:
-  - position: {x: 227.5, y: 0, z: 30}
+  - position: {x: 230, y: 0, z: 40}
     roll: 0
   - position: {x: 240.49863, y: 0, z: 381.3736}
     roll: 0

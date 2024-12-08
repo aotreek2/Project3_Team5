@@ -53,11 +53,12 @@ public class RaceManager : MonoBehaviour
         {
             CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
             InputManager playerInput = player.GetComponent<InputManager>();
+            playerScript.start = false;
             playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera");
             playerCamera.GetComponent<AudioListener>().enabled = false;
             speedometerPanel.SetActive(false);
-            playerInput.enabled = false;
-            playerScript.enabled = false;
+           // playerInput.enabled = false;
+          //  playerScript.enabled = false;
         }
     }
 
@@ -67,7 +68,7 @@ public class RaceManager : MonoBehaviour
         trapCamera.enabled = false;
         trapCamera.GetComponent<TrapCameraController>().enabled = false;
         trapCamera.GetComponent<AudioListener>().enabled = false;
-       // playerCamera.GetComponent<AudioListener>().enabled = true;
+        playerCamera.GetComponent<AudioListener>().enabled = true;
         trapPanel.SetActive(false);
         //speedometerPanel.SetActive(true);
         countdownTxt.enabled = true;
@@ -103,9 +104,7 @@ public class RaceManager : MonoBehaviour
         }
 
         CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
-        InputManager playerInput = player.GetComponent<InputManager>();
-        playerInput.enabled = true;
-        playerScript.enabled = true;
+        playerScript.start = true;
     }
     private void CheckFinish()
     {
