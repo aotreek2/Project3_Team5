@@ -9,12 +9,14 @@ public class TrapDetection : MonoBehaviour
     private float upwardsAccl = 25;
     private Renderer[] modelRenderers;
     private bool isFlashing = false;
+    private RaceManager raceManager;
 
     Rigidbody rb;
     void Start()
     {
         modelRenderers = GetComponentsInChildren<Renderer>();
         rb = GetComponent<Rigidbody>();
+        raceManager = FindObjectOfType<RaceManager>();
     }
 
    
@@ -104,6 +106,11 @@ public class TrapDetection : MonoBehaviour
             StartFlashing(0f);
             Invoke("StopFlashing", 3f);
             Destroy(other.gameObject);
+        }
+
+        else if(other.gameObject.tag == "Finish")
+        {
+
         }
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -405,6 +405,7 @@ MonoBehaviour:
   trapCamera: {fileID: 1273405684}
   finishLine: {fileID: 582917580}
   results: {fileID: 973104682}
+  playerName: 
   countdownTxt: {fileID: 2050038864}
   levelToLoad: Main_Menu
 --- !u!4 &259976637
@@ -947,7 +948,7 @@ GameObject:
   - component: {fileID: 582917580}
   m_Layer: 0
   m_Name: End Collider
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2327,6 +2328,8 @@ MonoBehaviour:
     type: 3}
   truckPrefab: {fileID: 8770784273822695785, guid: 4e1abe12fe51b6e4ba87c2e2ab34ef18,
     type: 3}
+  raceManager: {fileID: 0}
+  currentCar: {fileID: 0}
 --- !u!4 &1255840068
 Transform:
   m_ObjectHideFlags: 0

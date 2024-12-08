@@ -32,12 +32,15 @@ public class PlayerSpawn : MonoBehaviour
         {
             case "Coupe":
                 currentCar = Instantiate(coupePrefab, transform.position, transform.rotation);
+                currentCar.gameObject.tag = "Player";
                 break;
             case "Sedan":
                 currentCar = Instantiate(sedanPrefab, transform.position, transform.rotation);
+                currentCar.gameObject.tag = "Player";
                 break;
             case "Truck":
                 currentCar = Instantiate(truckPrefab, transform.position, transform.rotation);
+                currentCar.gameObject.tag = "Player";
                 break;
             default:
                 Debug.LogError("Unknown car type selected: " + carType);

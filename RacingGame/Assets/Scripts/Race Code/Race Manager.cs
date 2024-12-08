@@ -4,14 +4,14 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
-
+using Cinemachine;
 public class RaceManager : MonoBehaviour
 {
     [Header("Game References")]
     [SerializeField] private GameObject[] aiRacers;
     [SerializeField] public GameObject player, trapPanel;
     [SerializeField] GameObject speedometerPanel;
-    [SerializeField] private Camera trapCamera;
+    [SerializeField] private CinemachineFreeLook trapCamera;
     private GameObject playerCamera;
     private int countdown = 3;
     [SerializeField] private Collider finishLine;
@@ -67,9 +67,7 @@ public class RaceManager : MonoBehaviour
         trapCamera.enabled = false;
         trapCamera.GetComponent<TrapCameraController>().enabled = false;
         trapCamera.GetComponent<AudioListener>().enabled = false;
-       // playerCamera.GetComponent<AudioListener>().enabled = true;
         trapPanel.SetActive(false);
-        //speedometerPanel.SetActive(true);
         countdownTxt.enabled = true;
         StartCountdown();
     }
@@ -107,28 +105,10 @@ public class RaceManager : MonoBehaviour
         playerInput.enabled = true;
         playerScript.enabled = true;
     }
-    private void CheckFinish()
+    public void CheckFinish(string racerName, string racerType, GameObject model)
     {
-        if (finishLine.bounds.Intersects(player.GetComponentInChildren<Collider>().bounds))
-        {
-            CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
-            results.FinishRace(playerScript.carName, playerName);
-            results.AddRacers(playerScript.gameObject);
-            SceneManager.LoadScene("RaceResults");
-            return;
-        } 
-
-        foreach (GameObject ai in aiRacers)
-        {
-            AICarController aiRacer = ai.GetComponent<AICarController>();
-            if (finishLine.bounds.Intersects(aiRacer.GetComponentInChildren<Collider>().bounds))
-            {
-                results.FinishRace(aiRacer.aiName, "AI");
-                results.AddRacers(aiRacer.GetComponent<GameObject>());
-                return;
-            }
-        }
-
-        
+        results.FinishRace(racerName, racerType);
+        results.AddRacers(model);
+        SceneManager.LoadScene("RaceResults");
     }
 }

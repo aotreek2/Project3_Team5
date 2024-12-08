@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8903948391969087011}
   - component: {fileID: 842427602892565404}
+  - component: {fileID: 3106809530488485385}
   m_Layer: 0
   m_Name: Oil Spill
-  m_TagString: Untagged
+  m_TagString: Oil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,3 +57,24 @@ MonoBehaviour:
   m_Offset: {x: 0, y: 0, z: 4.7}
   m_Size: {x: 10, y: 10, z: 9.4}
   m_FadeFactor: 1
+--- !u!65 &3106809530488485385
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9100539482831935515}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.848755, y: 9.814021, z: 1}
+  m_Center: {x: 0.104003906, y: 0.04915524, z: 1.272243e-16}

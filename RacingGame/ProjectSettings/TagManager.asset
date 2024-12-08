@@ -12,6 +12,7 @@ TagManager:
   - Rock
   - Spike
   - Tires
+  - Oil
   layers:
   - Default
   - TransparentFX
