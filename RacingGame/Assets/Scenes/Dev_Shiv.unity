@@ -23628,7 +23628,7 @@ PrefabInstance:
     - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}
       propertyPath: maxAcceleration
-      value: 150
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}
@@ -23703,12 +23703,12 @@ PrefabInstance:
     - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}
       propertyPath: steerCurve.m_Curve.Array.data[1].time
-      value: 0.8559991
+      value: 1.001693
       objectReference: {fileID: 0}
     - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}
       propertyPath: steerCurve.m_Curve.Array.data[1].value
-      value: 0.7389554
+      value: 0.73302835
       objectReference: {fileID: 0}
     - target: {fileID: 3345401810585088390, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}
@@ -23769,6 +23769,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SidewaysFriction.m_Stiffness
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7022000752861839106, guid: 764bc68a1a0dd384184fdeedf75892f9,
+        type: 3}
+      propertyPath: m_Mass
+      value: 5350
       objectReference: {fileID: 0}
     - target: {fileID: 7022000752861839106, guid: 764bc68a1a0dd384184fdeedf75892f9,
         type: 3}

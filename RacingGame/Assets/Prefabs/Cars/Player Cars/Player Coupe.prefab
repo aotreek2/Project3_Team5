@@ -357,6 +357,31 @@ MonoBehaviour:
   maxAcceleration: 200
   brakeAcceleration: 5000
   maxSpeed: 83
+  bonusGravity: 2
+  steerCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2.4033928
+      outSlope: 2.4033928
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.046979215
+    - serializedVersion: 3
+      time: 0.99334717
+      value: 0.8039589
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   turnSensitivity: 1
   maxSteerAngle: 35
   _centerOfMass: {x: 0, y: -1, z: 0}
@@ -368,6 +393,7 @@ MonoBehaviour:
   mphNeedle: {fileID: 919132149155446097, guid: 46858e1591d4e88468d0fc3f8ec60481,
     type: 3}
   carName: Player
+  rpmText: {fileID: 0}
 --- !u!114 &2381137204380981063
 MonoBehaviour:
   m_ObjectHideFlags: 0

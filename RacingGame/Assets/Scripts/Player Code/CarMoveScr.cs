@@ -68,7 +68,6 @@ public class CarMoveScr : MonoBehaviour
     //Car UI vars
     [SerializeField] GameObject mphNeedle;
     public string carName = "Player";
-    [SerializeField] TMP_Text rpmText;
     void Start()
     {
         carRb = GetComponent<Rigidbody>();
@@ -82,8 +81,6 @@ public class CarMoveScr : MonoBehaviour
 
     void Update()
     {
-        //rpmText.text = wheels[3].wheelCollider.rpm.ToString();
-        rpmText.text = gravMultiplier.ToString();
         if (currentTurn != steerInput)
         {
             if (steerRoutine != null) { StopCoroutine(steerRoutine); }
@@ -93,13 +90,11 @@ public class CarMoveScr : MonoBehaviour
 
     void FixedUpdate()
     {
-        //Move();
         AdjustEngineSound();
         RotateWheelMesh();
         UpdateDamper();
         UpdateGear();
         ApplyGravity();
-
     }
 
 
@@ -140,30 +135,11 @@ public class CarMoveScr : MonoBehaviour
             }
         }
         mph = Mathf.Round(carRb.velocity.magnitude * 2.237f * 10) / 10;
-        //Debug.Log(wheels[0].wheelCollider.rpm);
         if (mphNeedle != null)
         {
             mphNeedle.transform.rotation = Quaternion.Euler(0,0,-mph*1.375f + 110);
         }
-       //Debug.Log(mph);
     }
-
-    /*void UpdateDamper() //used to modify multipliers as the car's speed changes
-    {
-        //Debug.Log(carRb.velocity.magnitude);
-
-        float currentSpeed = Mathf.Clamp(carRb.velocity.magnitude, 0, maxSpeed - 0.01f); //ensure rational functions dont break.
-
-        //a float that goes from -0.8 upto to around 0.93 based on the car's speed compared to its max.
-        float damper = (-1 / ((0.1f * currentSpeed) - maxSpeed * 0.1f)) - (1f / (0.2f * maxSpeed * 0.1f));
-
-        //Acceleration Damper, to set max speed in a more realistic way
-        accelerationDamper = maxAcceleration * damper;
-        accelerationDamper = Mathf.Clamp(accelerationDamper, -500f, maxAcceleration);
-
-        //Steering Damper, to reduce turning ability at higher speeds
-
-    }*/
 
     void ApplyGravity()
     {
@@ -193,7 +169,6 @@ public class CarMoveScr : MonoBehaviour
 
     void UpdateDamper() //used to modify multipliers as the car's speed changes
     {
-        //Debug.Log(carRb.velocity.magnitude);
 
         float currentSpeed = Mathf.Clamp(carRb.velocity.magnitude, 0, maxSpeed - 0.01f); //ensure rational functions dont break.
 
@@ -203,14 +178,10 @@ public class CarMoveScr : MonoBehaviour
         //Acceleration Damper, to set max speed in a more realistic way
         accelerationDamper = maxAcceleration * damper;
         accelerationDamper = Mathf.Clamp(accelerationDamper, -500f, maxAcceleration);
-        //Debug.Log(damper);
         //Steering Damper, to reduce turning ability at higher speeds
-
-        //float steerDamper = mph * 1.7f/ (maxSpeed * 2.237f); //linearly go from 0 to 1 as car speeds up
 
         float steerDamper = steerCurve.Evaluate(mph/(maxSpeed * 2.237f));
         dynamicSteerMax = maxSteerAngle * steerDamper;
-        //Debug.Log(dynamicSteerMax);
     }
     void UpdateGear()
     {
