@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,10 +38,14 @@ public class CarMoveScr : MonoBehaviour
     [SerializeField] float maxAcceleration = 30.0f;
     [SerializeField] float brakeAcceleration = 50.0f;
     [SerializeField] float maxSpeed = 100f;
+    [SerializeField] float bonusGravity = 2;
+    [SerializeField] AnimationCurve steerCurve;
     int currentGear = 1;
     float accelerationDamper = 1.5f;
+    float gravMultiplier = 1;
 
     Coroutine steerRoutine;
+    Coroutine gravRoutine;
 
     [SerializeField, Range(0,1f) ] float turnSensitivity = 1.0f;
     [SerializeField] float maxSteerAngle = 30.0f;
@@ -62,9 +67,8 @@ public class CarMoveScr : MonoBehaviour
 
     //Car UI vars
     [SerializeField] GameObject mphNeedle;
-    float minZRot = 135;
-    float maxZRot = -110;
     public string carName = "Player";
+    [SerializeField] TMP_Text rpmText;
     void Start()
     {
         carRb = GetComponent<Rigidbody>();
@@ -74,13 +78,17 @@ public class CarMoveScr : MonoBehaviour
             wheel.wheelCollider.ConfigureVehicleSubsteps(5, 12, 15);
             wheel.wheelCollider.motorTorque = 0;
         }
-
-        
     }
 
     void Update()
     {
-        
+        //rpmText.text = wheels[3].wheelCollider.rpm.ToString();
+        rpmText.text = gravMultiplier.ToString();
+        if (currentTurn != steerInput)
+        {
+            if (steerRoutine != null) { StopCoroutine(steerRoutine); }
+            steerRoutine = StartCoroutine(TurnTires());
+        }
     }
 
     void FixedUpdate()
@@ -90,11 +98,8 @@ public class CarMoveScr : MonoBehaviour
         RotateWheelMesh();
         UpdateDamper();
         UpdateGear();
-        if(currentTurn != steerInput)
-        {
-            if (steerRoutine != null) { StopCoroutine(steerRoutine); }
-            steerRoutine = StartCoroutine(TurnTires());
-        }
+        ApplyGravity();
+
     }
 
 
@@ -112,21 +117,30 @@ public class CarMoveScr : MonoBehaviour
     {
         foreach (Wheel wheel in wheels)
         {
+            float wheelRPM = wheel.wheelCollider.rpm;
+            float direction = Mathf.Clamp(wheelRPM, -1, 1);
             if (moveInput == 0)
             {
-                if (mph > 0.2f)
+                if (mph > 1f)
                 {
-                    float direction = Mathf.Clamp(wheel.wheelCollider.rpm, -1, 1);
-                    wheel.wheelCollider.motorTorque = -direction * 2 * (maxAcceleration - accelerationDamper); //changed from deltatime to fixed for physics
+                    wheel.wheelCollider.motorTorque = -direction * 0.5f * (maxAcceleration - accelerationDamper); //changed from deltatime to fixed for physics
+                }
+                else
+                {
+                    wheel.wheelCollider.motorTorque = 0;
+                    wheel.wheelCollider.rotationSpeed = 0;
                 }
             }
             else
             {
-                wheel.wheelCollider.motorTorque = moveInput * 500 * (maxAcceleration - accelerationDamper) * Time.fixedDeltaTime; //changed from deltatime to fixed for physics
+                if (wheel.axel == Axel.Rear)
+                {
+                    wheel.wheelCollider.motorTorque = moveInput * 500 * (maxAcceleration - accelerationDamper) * Time.fixedDeltaTime; //changed from deltatime to fixed for physics
+                }
             }
         }
         mph = Mathf.Round(carRb.velocity.magnitude * 2.237f * 10) / 10;
-        Debug.Log(wheels[0].wheelCollider.rpm);
+        //Debug.Log(wheels[0].wheelCollider.rpm);
         if (mphNeedle != null)
         {
             mphNeedle.transform.rotation = Quaternion.Euler(0,0,-mph*1.375f + 110);
@@ -151,6 +165,32 @@ public class CarMoveScr : MonoBehaviour
 
     }*/
 
+    void ApplyGravity()
+    {
+        int wheelsOnGround = 0;
+        foreach (Wheel wheel in wheels)
+        {
+            if (wheel.wheelCollider.isGrounded)
+            {
+                wheelsOnGround++;
+            }
+        }
+        if (wheelsOnGround > 1) //if on ground, use normal gravity
+        {
+            if (gravRoutine != null) 
+            { 
+                StopCoroutine(gravRoutine); 
+                gravRoutine = null;
+            }
+            gravMultiplier = 1;
+        }
+        else if (gravRoutine == null)
+        {
+            gravRoutine = StartCoroutine(GravityLerp());
+        }
+        carRb.velocity += new Vector3(0, -9.81f * Time.fixedDeltaTime * gravMultiplier, 0);
+    }
+
     void UpdateDamper() //used to modify multipliers as the car's speed changes
     {
         //Debug.Log(carRb.velocity.magnitude);
@@ -166,10 +206,11 @@ public class CarMoveScr : MonoBehaviour
         //Debug.Log(damper);
         //Steering Damper, to reduce turning ability at higher speeds
 
-        float steerDamper = mph * 1.7f/ (maxSpeed * 2.237f); //linearly go from 0 to 1 as car speeds up
-        steerDamper = Mathf.Clamp01(steerDamper);
-        dynamicSteerMax = maxSteerAngle * steerDamper * 0.8f;
+        //float steerDamper = mph * 1.7f/ (maxSpeed * 2.237f); //linearly go from 0 to 1 as car speeds up
 
+        float steerDamper = steerCurve.Evaluate(mph/(maxSpeed * 2.237f));
+        dynamicSteerMax = maxSteerAngle * steerDamper;
+        //Debug.Log(dynamicSteerMax);
     }
     void UpdateGear()
     {
@@ -189,9 +230,10 @@ public class CarMoveScr : MonoBehaviour
     {
         currentTurn = steerInput;
         float elapsedTime = 0;
-        while (elapsedTime < 10)
+        float duration = 3;
+        while (elapsedTime < duration)
         {
-            float t = elapsedTime / 10;
+            float t = elapsedTime / duration;
             foreach (Wheel wheel in wheels)
             {
                 if (wheel.axel == Axel.Front) //only front wheels
@@ -212,7 +254,20 @@ public class CarMoveScr : MonoBehaviour
             yield return null;
         }
     }
+    IEnumerator GravityLerp()
+    {
 
+        yield return new WaitForSeconds(0.5f);
+        float elapsedTime = 0;
+        float duration = 3;
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            gravMultiplier = Mathf.Lerp(1, bonusGravity, t);
+            elapsedTime += Time.fixedDeltaTime;
+            yield return null;
+        }
+    }
     public void ApplyBrake(bool braking)
     {
         if (braking)
