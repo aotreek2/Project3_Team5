@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class BoundaryReset : MonoBehaviour
@@ -6,6 +7,7 @@ public class BoundaryReset : MonoBehaviour
     public GameObject player; // Reference to the player's GameObject.
     public float heightThreshold = 23f; // The Y-value threshold for resetting.
     public float resetDelay = 3f; // Time before resetting the player.
+    public TMP_Text boundaryText;
     private Vector3 entryPosition; // Position where the player first exceeded the threshold.
     private Quaternion entryRotation;
     private Coroutine resetTimerCoroutine; // Coroutine for managing the reset timer.
@@ -47,6 +49,8 @@ public class BoundaryReset : MonoBehaviour
                 {
                     entryPosition = player.transform.position;
                     entryRotation = player.transform.rotation; // Reset rotation to default (no rotation)
+                    boundaryText.enabled = true;
+                    boundaryText.text = "Get back to the track";
                     Debug.Log($"BoundaryReset: Player exceeded height threshold at position {entryPosition}");
                     resetTimerCoroutine = StartCoroutine(ResetTimer());
                 }
@@ -57,6 +61,7 @@ public class BoundaryReset : MonoBehaviour
                 if (resetTimerCoroutine != null)
                 {
                     Debug.Log("BoundaryReset: Player returned below threshold. Canceling reset timer.");
+                    boundaryText.enabled = false;
                     StopCoroutine(resetTimerCoroutine);
                     resetTimerCoroutine = null;
                 }
@@ -68,15 +73,26 @@ public class BoundaryReset : MonoBehaviour
     {
         Debug.Log("BoundaryReset: Timer started.");
 
-        // Wait for the specified delay.
-        yield return new WaitForSeconds(resetDelay);
+        float timer = resetDelay;
 
-        // If the timer completes, reset the player's position.
+        // Update the text to show the countdown until reset.
+        while (timer > 0)
+        {
+            boundaryText.text = $"Get back to the track: {timer:F1} seconds remaining";
+            timer -= Time.deltaTime;
+            yield return null; // Wait for the next frame.
+        }
+
+        // When the timer completes, reset the player's position and rotation.
         Debug.Log($"BoundaryReset: Timer completed. Resetting player position to {entryPosition}");
         player.transform.position = entryPosition;
         player.transform.rotation = entryRotation;
+
+        // Call the reset method on the player's script if necessary.
         playerScript.BoundaryReset();
 
+        // Hide the text after the reset.
+        boundaryText.enabled = false;
 
         // Reset the timer coroutine reference.
         resetTimerCoroutine = null;

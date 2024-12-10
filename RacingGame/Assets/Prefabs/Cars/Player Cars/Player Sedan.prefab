@@ -172,6 +172,57 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 9067332987797314631, guid: 510ba3662d6a4d94ab81d98dee63fc5c, type: 3}
+--- !u!1 &2901969031236863174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2946701817733829288}
+  - component: {fileID: 6988649399580343722}
+  m_Layer: 0
+  m_Name: TrapPlacement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2946701817733829288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2901969031236863174}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: -3.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 166089488414538838}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6988649399580343722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2901969031236863174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da910df67e098ac449d0866b9ec40e62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traps:
+  - {fileID: 8583748329642069497, guid: 97f35bea13ca30b4ca6db491384ecda6, type: 3}
+  - {fileID: 757440131303721313, guid: 5a0a0b7058b7e444eb5b1284cd0505ad, type: 3}
+  - {fileID: 1139757807674255892, guid: b0f6ea91a631fd64887d81637083c635, type: 3}
+  - {fileID: 1719761367319824578, guid: d946720d1df96d543b491fcaf40f7b83, type: 3}
+  trapPlacementPoint: {fileID: 2946701817733829288}
+  maxTraps: 5
 --- !u!1 &2950974052685864782
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,6 +474,7 @@ Transform:
   - {fileID: 8058209719009913281}
   - {fileID: 3960768993122763249}
   - {fileID: 6114132863490325234}
+  - {fileID: 2946701817733829288}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &9029458603503811185

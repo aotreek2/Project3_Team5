@@ -26,6 +26,7 @@ public class PauseController : MonoBehaviour
     {
         isPaused = true;
         pausePanel.SetActive(true);
+        AudioListener.pause = true;
         Time.timeScale = 0f; // Pause the game
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -35,6 +36,7 @@ public class PauseController : MonoBehaviour
     {
         isPaused = false;
         pausePanel.SetActive(false);
+        AudioListener.pause = false;
         Time.timeScale = 1f; // Resume the game
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

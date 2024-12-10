@@ -22,6 +22,7 @@ public class RaceManager : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private TMP_Text countdownTxt;
+    [SerializeField] public TMP_Text inGameTrapText;
     public string levelToLoad;
 
     [Header("SFX")]
@@ -30,9 +31,9 @@ public class RaceManager : MonoBehaviour
     [SerializeField] AudioSource countdownGo;
     void Start()
     {
-        countdownTxt.enabled = false;
         results = results.GetComponent<ResultManager>();
         Invoke("DelayedStart", .1f);
+        inGameTrapText.enabled = false;
 
         foreach (GameObject ai in aiRacers)
         {
@@ -117,6 +118,7 @@ public class RaceManager : MonoBehaviour
 
         countdownGo.Play();
         levelMusic.Play();
+        inGameTrapText.enabled = true;
     }
     public void CheckFinish(string racerName, string racerType, GameObject model)
     {
