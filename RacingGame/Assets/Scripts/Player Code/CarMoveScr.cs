@@ -273,6 +273,17 @@ public class CarMoveScr : MonoBehaviour
         }
     }
 
+    public void BoundaryReset()
+    {
+        foreach(Wheel wheel in wheels)
+        {
+            wheel.wheelCollider.motorTorque = 0f;
+            wheel.wheelCollider.brakeTorque = 0f;
+        }
+
+        carRb.velocity = Vector3.zero;
+    }
+
     private void AdjustEngineSound()
     {
         if (engineAudioSource == null) return;
