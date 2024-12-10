@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TrapDetection : MonoBehaviour
@@ -106,11 +107,6 @@ public class TrapDetection : MonoBehaviour
             StartFlashing(0f);
             Invoke("StopFlashing", 3f);
             Destroy(other.gameObject);
-        }
-
-        else if(other.gameObject.tag == "Finish")
-        {
-
         }
     }
 }

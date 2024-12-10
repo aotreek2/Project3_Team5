@@ -13,6 +13,8 @@ TagManager:
   - Spike
   - Tires
   - Oil
+  - SkyboxCamera
+  - AI
   layers:
   - Default
   - TransparentFX

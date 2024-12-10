@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1510297292095400933}
   - component: {fileID: 5909060440958023056}
   - component: {fileID: 7127745988925887245}
+  - component: {fileID: -555741413127281974}
   - component: {fileID: 1238813743675545599}
   m_Layer: 0
   m_Name: RockL
@@ -84,6 +85,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-555741413127281974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35539744089610592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828e68dd58feb6843b1f5c539f9f93eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &1238813743675545599
 SphereCollider:
   m_ObjectHideFlags: 0

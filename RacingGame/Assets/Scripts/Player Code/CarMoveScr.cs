@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static CarMoveScr;
 
@@ -67,9 +68,12 @@ public class CarMoveScr : MonoBehaviour
 
     //Car UI vars
     [SerializeField] GameObject mphNeedle;
+
+    RaceManager raceManager;
     public string carName = "Player";
     void Start()
     {
+        raceManager = FindObjectOfType<RaceManager>();
         carRb = GetComponent<Rigidbody>();
         carRb.centerOfMass = _centerOfMass;
         foreach (Wheel wheel in wheels)
@@ -276,5 +280,15 @@ public class CarMoveScr : MonoBehaviour
         // Calculate the pitch based on the car's current speed
         float speedRatio = carRb.velocity.magnitude / maxSpeed;
         engineAudioSource.pitch = Mathf.Lerp(minPitch, maxPitch, speedRatio);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Finish")
+        {
+            string playerName = PlayerPrefs.GetString("Player Name");
+            raceManager.CheckFinish(playerName, "Player", gameObject);
+            SceneManager.LoadScene("RaceResults");
+        }
     }
 }

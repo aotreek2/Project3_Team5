@@ -91,7 +91,7 @@ public class TrapCameraController : MonoBehaviour
     private void PreviewTrap()
     {
         trapPreview = traps[trapIndex];
-        currentTrap.text = "Trap: " + traps[trapIndex].name;
+        //currentTrap.text = "Trap: " + traps[trapIndex].name;
 
         if (trapPreview != null)
         {

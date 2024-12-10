@@ -8,16 +8,18 @@ public class ResultManager : MonoBehaviour
 {
     [SerializeField] private List<string> raceResults = new List<string>();
     [SerializeField] public List<GameObject> racers = new List<GameObject>();
-    Scene currentScene;
-
+    public static ResultManager Instance { get; private set; }
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
-        currentScene = SceneManager.GetActiveScene();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void FinishRace(string racerName, string racerType)
@@ -26,6 +28,7 @@ public class ResultManager : MonoBehaviour
         if (!raceResults.Contains(result))
         {
             raceResults.Add(result);
+            ResultManager.Instance.raceResults = raceResults;
             Debug.Log($"{racerName} ({racerType}) finished at position {raceResults.Count}");
         }
     }
@@ -33,6 +36,11 @@ public class ResultManager : MonoBehaviour
     public void AddRacers(GameObject racerModel)
     {
         racers.Add(racerModel);
+        foreach (var racer in racers)
+        {
+            Debug.Log(racer);
+        }
+        ResultManager.Instance.racers = racers;
     }
 
     public List<string> GetRaceResults()

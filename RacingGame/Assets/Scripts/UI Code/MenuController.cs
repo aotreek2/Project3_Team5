@@ -30,7 +30,7 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
+        DisableStart();
     }
     public void OnPlayButtonClicked()
     {
@@ -74,6 +74,7 @@ public class MenuController : MonoBehaviour
     public void InputName()
     {
         string playerName = nameInput.text;
+
         PlayerPrefs.SetString("Player Name", playerName);
         PlayerPrefs.Save();
     }
@@ -84,6 +85,7 @@ public class MenuController : MonoBehaviour
         coupeSelect.interactable = true;
         truckSelect.interactable = true;
         startGameButton.interactable = true;
+        DisableStart();
         PlayerPrefs.SetString("SelectedCar", "Sedan");
         PlayerPrefs.Save();
     }
@@ -93,6 +95,7 @@ public class MenuController : MonoBehaviour
         coupeSelect.interactable = false;
         truckSelect.interactable = true;
         startGameButton.interactable = true;
+        DisableStart();
         PlayerPrefs.SetString("SelectedCar", "Coupe");
         PlayerPrefs.Save();
     }
@@ -102,9 +105,23 @@ public class MenuController : MonoBehaviour
         coupeSelect.interactable = true;
         truckSelect.interactable = false;
         startGameButton.interactable = true;
+        DisableStart();
         PlayerPrefs.SetString("SelectedCar", "Truck");
         PlayerPrefs.Save();
     }
+
+    private void DisableStart()
+    {
+        if(string.IsNullOrEmpty(nameInput.text))
+        {
+            startGameButton.interactable = false;
+        }
+        else
+        {
+            startGameButton.interactable = true;
+        }
+    }
+
     public void OnQuitButtonClicked()
     {
         Application.Quit();

@@ -38,9 +38,15 @@ public class AICarController : MonoBehaviour
     public float minPitch = 0.8f; // Pitch at zero speed
     public float maxPitch = 2.0f; // Pitch at max speed
 
+    [SerializeField] private RaceManager raceManager;
+    public Collider finishLine;
+    public Collider[] car;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        raceManager = GetComponent<RaceManager>();
+        car = GetComponentsInChildren<Collider>();
         rb.centerOfMass = new Vector3(0, -1f, 0);
         currentSpeed = maxSpeed * Random.Range(0.2f, 1.0f);
 
@@ -237,6 +243,17 @@ public class AICarController : MonoBehaviour
         // Calculate the pitch based on the car's current speed
         float speedRatio = rb.velocity.magnitude / maxSpeed;
         engineAudioSource.pitch = Mathf.Lerp(minPitch, maxPitch, speedRatio);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        foreach (var carColliders in car)
+        {
+            if (finishLine.bounds.Intersects(carColliders.bounds))
+            {
+                raceManager.CheckFinish(aiName, "AI", gameObject);
+            }
+        }
     }
 }
 

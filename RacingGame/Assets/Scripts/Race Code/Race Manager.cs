@@ -11,7 +11,7 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private GameObject[] aiRacers;
     [SerializeField] public GameObject player, trapPanel;
     [SerializeField] GameObject speedometerPanel;
-    [SerializeField] private CinemachineFreeLook trapCamera;
+    [SerializeField] private Camera trapCamera;
     private GameObject playerCamera;
     private int countdown = 3;
     [SerializeField] private Collider finishLine;
@@ -26,6 +26,7 @@ public class RaceManager : MonoBehaviour
     void Start()
     {
         countdownTxt.enabled = false;
+        results = results.GetComponent<ResultManager>();
         Invoke("DelayedStart", .1f);
 
         foreach (GameObject ai in aiRacers)
@@ -38,7 +39,7 @@ public class RaceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Invoke("CheckFinish", 5f);
+        
    
     }
 
@@ -54,10 +55,12 @@ public class RaceManager : MonoBehaviour
             CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
             InputManager playerInput = player.GetComponent<InputManager>();
             playerCamera = GameObject.FindGameObjectWithTag("PlayerCamera");
+            playerCamera.SetActive(false);
             playerCamera.GetComponent<AudioListener>().enabled = false;
             speedometerPanel.SetActive(false);
-            playerInput.enabled = false;
-            playerScript.enabled = false;
+            playerScript.start = false;
+            //playerInput.enabled = false;
+            // playerScript.enabled = false;
         }
     }
 
@@ -67,6 +70,8 @@ public class RaceManager : MonoBehaviour
         trapCamera.enabled = false;
         trapCamera.GetComponent<TrapCameraController>().enabled = false;
         trapCamera.GetComponent<AudioListener>().enabled = false;
+        playerCamera.GetComponent<AudioListener>().enabled = true;
+        playerCamera.SetActive(true);
         trapPanel.SetActive(false);
         countdownTxt.enabled = true;
         StartCountdown();
@@ -101,14 +106,11 @@ public class RaceManager : MonoBehaviour
         }
 
         CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
-        InputManager playerInput = player.GetComponent<InputManager>();
-        playerInput.enabled = true;
-        playerScript.enabled = true;
+        playerScript.start = true;
     }
     public void CheckFinish(string racerName, string racerType, GameObject model)
     {
         results.FinishRace(racerName, racerType);
         results.AddRacers(model);
-        SceneManager.LoadScene("RaceResults");
     }
 }
