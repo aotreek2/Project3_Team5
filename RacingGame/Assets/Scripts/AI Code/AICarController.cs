@@ -1,5 +1,9 @@
 using UnityEngine;
 using Cinemachine;
+using System.Collections;
+using System.Collections.Generic;
+using static CarMoveScr;
+using Unity.VisualScripting;
 
 public class AICarController : MonoBehaviour
 {
@@ -21,6 +25,7 @@ public class AICarController : MonoBehaviour
     public WheelCollider frontRightWheel;
     public WheelCollider rearLeftWheel;
     public WheelCollider rearRightWheel;
+    private WheelCollider[] wheels;
     public Transform frontLeftTransform;
     public Transform frontRightTransform;
     public Transform rearLeftTransform;
@@ -37,6 +42,10 @@ public class AICarController : MonoBehaviour
     public AudioSource engineAudioSource;
     public float minPitch = 0.8f; // Pitch at zero speed
     public float maxPitch = 2.0f; // Pitch at max speed
+
+    Coroutine gravRoutine;
+    float gravMultiplier = 1;
+    [SerializeField] float bonusGravity = 2;
 
     private void Start()
     {
@@ -227,6 +236,56 @@ public class AICarController : MonoBehaviour
         else
         {
             stoppedTime = 0f; // Reset if car is moving
+        }
+    }
+
+    void ApplyGravity()
+    {
+        int wheelsOnGround = 0;
+        if(frontRightWheel.isGrounded)
+        {
+            wheelsOnGround++;
+        }
+        if (frontLeftWheel.isGrounded)
+        {
+            wheelsOnGround++;
+        }
+        if (rearRightWheel.isGrounded)
+        {
+            wheelsOnGround++;
+        }
+        if (rearLeftWheel.isGrounded)
+        {
+            wheelsOnGround++;
+        }
+        if (wheelsOnGround > 1) //if on ground, use normal gravity
+        {
+            if (gravRoutine != null)
+            {
+                StopCoroutine(gravRoutine);
+                gravRoutine = null;
+            }
+            gravMultiplier = 1;
+        }
+        else if (gravRoutine == null)
+        {
+            gravRoutine = StartCoroutine(GravityLerp());
+        }
+        rb.velocity += new Vector3(0, -9.81f * Time.fixedDeltaTime * gravMultiplier, 0);
+    }
+
+    IEnumerator GravityLerp()
+    {
+
+        yield return new WaitForSeconds(0.5f);
+        float elapsedTime = 0;
+        float duration = 3;
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            gravMultiplier = Mathf.Lerp(1, bonusGravity, t);
+            elapsedTime += Time.fixedDeltaTime;
+            yield return null;
         }
     }
 

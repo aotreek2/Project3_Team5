@@ -32,6 +32,13 @@ public class CarCamHandler : MonoBehaviour
         cam = GetComponent<CinemachineVirtualCamera>();
         camPoser = cam.GetCinemachineComponent<CinemachineOrbitalTransposer>();
         rotateCamRoutine ??= StartCoroutine(SmoothCamRot());
+        Invoke("DelayedStart", .1f);
+    }
+
+    void DelayedStart()
+    {
+        cam.Follow = GameObject.Find("CamFollowRef").transform;
+        cam.LookAt = GameObject.Find("CamFollowRef").transform;
     }
 
     public void HandleCamRot(Vector2 input)

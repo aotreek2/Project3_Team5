@@ -4,14 +4,17 @@ using UnityEngine;
 public class BoundaryReset : MonoBehaviour
 {
     public GameObject player; // Reference to the player's GameObject.
-    private Vector3 entryPosition; // Position where the player entered the trigger.
+    public float heightThreshold = 23f; // The Y-value threshold for resetting.
+    public float resetDelay = 3f; // Time before resetting the player.
+    private Vector3 entryPosition; // Position where the player first exceeded the threshold.
+    private Quaternion entryRotation;
     private Coroutine resetTimerCoroutine; // Coroutine for managing the reset timer.
     private PlayerSpawn playerCar; // Reference to the PlayerSpawn script.
+    private CarMoveScr playerScript;
 
     private void Start()
     {
         // Delayed initialization of the player GameObject.
-        Debug.Log("BoundaryReset: Starting delayed initialization.");
         Invoke("DelayedStart", 0.15f);
     }
 
@@ -23,6 +26,7 @@ public class BoundaryReset : MonoBehaviour
         if (playerCar != null)
         {
             player = playerCar.currentCar;
+            playerScript = player.GetComponent<CarMoveScr>();
             Debug.Log($"BoundaryReset: Player assigned as {player.name}");
         }
         else
@@ -31,37 +35,31 @@ public class BoundaryReset : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        // Check if the object entering the trigger is the player.
-        if (other.gameObject == player)
+        if (player != null)
         {
-            // Store the position where the player entered the trigger.
-            entryPosition = player.transform.position;
-            Debug.Log($"BoundaryReset: Player entered trigger zone at position {entryPosition}");
-
-            // Start the reset timer if it's not already running.
-            if (resetTimerCoroutine == null)
+            // Check if the player's Y position exceeds the threshold.
+            if (player.transform.position.y > heightThreshold)
             {
-                Debug.Log("BoundaryReset: Starting reset timer.");
-                resetTimerCoroutine = StartCoroutine(ResetTimer());
+                // If the timer isn't running, start it and store the entry position.
+                if (resetTimerCoroutine == null)
+                {
+                    entryPosition = player.transform.position;
+                    entryRotation = player.transform.rotation; // Reset rotation to default (no rotation)
+                    Debug.Log($"BoundaryReset: Player exceeded height threshold at position {entryPosition}");
+                    resetTimerCoroutine = StartCoroutine(ResetTimer());
+                }
             }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        // Check if the object exiting the trigger is the player.
-        if (other.gameObject == player)
-        {
-            Debug.Log("BoundaryReset: Player exited trigger zone.");
-
-            // Cancel the reset timer if the player exits the trigger.
-            if (resetTimerCoroutine != null)
+            else
             {
-                Debug.Log("BoundaryReset: Canceling reset timer.");
-                StopCoroutine(resetTimerCoroutine);
-                resetTimerCoroutine = null;
+                // If the player goes below the threshold, stop the timer.
+                if (resetTimerCoroutine != null)
+                {
+                    Debug.Log("BoundaryReset: Player returned below threshold. Canceling reset timer.");
+                    StopCoroutine(resetTimerCoroutine);
+                    resetTimerCoroutine = null;
+                }
             }
         }
     }
@@ -70,15 +68,18 @@ public class BoundaryReset : MonoBehaviour
     {
         Debug.Log("BoundaryReset: Timer started.");
 
-        // Wait for 3 seconds.
-        yield return new WaitForSeconds(3f);
+        // Wait for the specified delay.
+        yield return new WaitForSeconds(resetDelay);
 
+        // If the timer completes, reset the player's position.
         Debug.Log($"BoundaryReset: Timer completed. Resetting player position to {entryPosition}");
-
-        // Reset the player's position to where they entered the trigger.
         player.transform.position = entryPosition;
+        player.transform.rotation = entryRotation;
+        playerScript.BoundaryReset();
+
 
         // Reset the timer coroutine reference.
         resetTimerCoroutine = null;
     }
 }
+
