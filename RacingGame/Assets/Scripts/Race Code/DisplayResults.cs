@@ -5,14 +5,16 @@ using UnityEngine;
 public class DisplayResults : MonoBehaviour
 {
     [SerializeField] public ResultManager results;
+    [SerializeField] public RaceManager race;
+    PlayerSpawn playerCar;
     private List<GameObject> racersList;
     [SerializeField] private Transform[] placementPoints;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject[] racers;
-
+    [SerializeField] private AudioSource music;
     private void Awake()
     {
-        results = FindObjectOfType<ResultManager>();
+        
     }
 
     void Start()
@@ -28,15 +30,24 @@ public class DisplayResults : MonoBehaviour
         {
             foreach (var racer in racersList)
             {
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < racersList.Count; i++)
                 {
-                    Instantiate(racersList[i]);
-                    racersList[i].transform.position = placementPoints[i].transform.position;
-                    racersList[i].transform.rotation = placementPoints[i].transform.rotation;
+                    GameObject displayedCar = Instantiate(racersList[i]);
+                    displayedCar.GetComponentInChildren<AudioSource>().Stop();
+                    var scripts = displayedCar.GetComponents<MonoBehaviour>();
+                    foreach (var script in scripts)
+                    {
+                        script.enabled = false;
+                    }
+
+                    displayedCar.transform.position = placementPoints[i].transform.position;
+                    displayedCar.transform.rotation = placementPoints[i].transform.rotation;
 
                 }
             }
         }
+        music.Stop();
+        race.winCam.enabled = true;
     }
 }
 

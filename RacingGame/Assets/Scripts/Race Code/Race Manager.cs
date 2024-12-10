@@ -12,10 +12,11 @@ public class RaceManager : MonoBehaviour
     [SerializeField] public GameObject player, trapPanel;
     [SerializeField] GameObject speedometerPanel;
     [SerializeField] private Camera trapCamera;
-    private GameObject playerCamera;
+    public GameObject playerCamera;
     private int countdown = 3;
     [SerializeField] private Collider finishLine;
     [SerializeField] private ResultManager results;
+    [SerializeField] public Camera winCam;
     PlayerSpawn playerCar;
     public string playerName;
 
@@ -62,6 +63,7 @@ public class RaceManager : MonoBehaviour
             playerCamera.SetActive(false);
             playerCamera.GetComponent<AudioListener>().enabled = false;
             speedometerPanel.SetActive(false);
+            winCam.enabled = false;
             playerScript.start = false;
             //playerInput.enabled = false;
             // playerScript.enabled = false;

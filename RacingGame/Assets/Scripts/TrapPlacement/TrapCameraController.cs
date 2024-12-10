@@ -73,7 +73,7 @@ public class TrapCameraController : MonoBehaviour
                 trapIndex = Mathf.Clamp(trapIndex, 0, traps.Length);
                 Destroy(trapPreview);
                 trapPreview = Instantiate(traps[trapIndex]);
-                currentTrap.text = "Trap: " + traps[trapIndex].name;
+                //currentTrap.text = "Trap: " + traps[trapIndex].name;
                 trapPreview.GetComponent<Collider>().enabled = false;
             }
             if (Input.GetKeyDown(KeyCode.E))
@@ -82,7 +82,7 @@ public class TrapCameraController : MonoBehaviour
                 trapIndex = Mathf.Clamp(trapIndex, 0, traps.Length);
                 Destroy(trapPreview);
                 trapPreview = Instantiate(traps[trapIndex]);
-                currentTrap.text = "Trap: " + traps[trapIndex].name;
+                //currentTrap.text = "Trap: " + traps[trapIndex].name;
                 trapPreview.GetComponent<Collider>().enabled = false;
             }
         }
