@@ -7,12 +7,12 @@ public class DisplayResults : MonoBehaviour
     [SerializeField] public ResultManager results;
     private List<GameObject> racersList;
     [SerializeField] private Transform[] placementPoints;
-
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject[] racers;
 
     private void Awake()
     {
         results = FindObjectOfType<ResultManager>();
-        Display();
     }
 
     void Start()
@@ -20,7 +20,7 @@ public class DisplayResults : MonoBehaviour
 
     }
 
-    private void Display()
+    public void Display()
     {
         racersList = results.racers;
 

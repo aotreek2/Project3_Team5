@@ -70,11 +70,13 @@ public class CarMoveScr : MonoBehaviour
     [SerializeField] GameObject mphNeedle;
 
     RaceManager raceManager;
+    DisplayResults raceOver;
     public string carName = "Player";
     void Start()
     {
         raceManager = FindObjectOfType<RaceManager>();
         carRb = GetComponent<Rigidbody>();
+        raceOver = FindObjectOfType<DisplayResults>();
         carRb.centerOfMass = _centerOfMass;
         foreach (Wheel wheel in wheels)
         {
@@ -299,7 +301,7 @@ public class CarMoveScr : MonoBehaviour
         {
             string playerName = PlayerPrefs.GetString("Player Name");
             raceManager.CheckFinish(playerName, "Player", gameObject);
-            SceneManager.LoadScene("RaceResults");
+            raceOver.Display();
         }
     }
 }
