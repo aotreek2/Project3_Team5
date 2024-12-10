@@ -12,6 +12,10 @@ public class MenuController : MonoBehaviour
     [SerializeField] private TMP_Text helpTitle, helpText;
     [SerializeField] private TMP_InputField nameInput;
     [SerializeField] private Button sedanSelect, coupeSelect, truckSelect, startGameButton;
+
+    [Header("SFX")]
+    [SerializeField] AudioSource buttonHover;
+    [SerializeField] AudioSource buttonClicked;
     private Scene scene;
     void Start()
     {
@@ -35,22 +39,26 @@ public class MenuController : MonoBehaviour
     public void OnPlayButtonClicked()
     {
         SceneManager.LoadScene(scene.buildIndex + 1);
+        buttonClicked.Play();
     }
     public void OnHelpButtonClicked()
     {
         helpPanel.gameObject.SetActive(true);
         mainMenuPanel.gameObject.SetActive(false);
+        buttonClicked.Play();
     }
     public void OnCreditsButtonClicked()
     {
         creditsPanel.gameObject.SetActive(true);
         mainMenuPanel.gameObject.SetActive(false);
+        buttonClicked.Play();
     }
     public void OnBackButtonClicked()
     {
         helpPanel.gameObject.SetActive(false);
         creditsPanel.gameObject.SetActive(false);
         mainMenuPanel.gameObject.SetActive(true);
+        buttonClicked.Play();
     }
 
     public void OnRightButtonClicked()
@@ -60,6 +68,7 @@ public class MenuController : MonoBehaviour
         "- Pause <br> Rotate  (Trap Camera)  - Q & E <br> Zoom in (Trap Camera) - Mouse Scroll Wheel <br> Place Trap (Trap Camera) - LMB";
         rightButton.gameObject.SetActive(false);
         leftButton.gameObject.SetActive(true);
+        buttonClicked.Play();
     }
 
     public void OnLeftButtonClicked()
@@ -68,6 +77,7 @@ public class MenuController : MonoBehaviour
         helpText.text = "Before the race starts, you will place traps in order to slow down your opponents  on the track, first to finish wins!";
         leftButton.gameObject.SetActive(false);
         rightButton.gameObject.SetActive(true);
+        buttonClicked.Play();
 
     }
 
@@ -88,6 +98,7 @@ public class MenuController : MonoBehaviour
         DisableStart();
         PlayerPrefs.SetString("SelectedCar", "Sedan");
         PlayerPrefs.Save();
+        buttonClicked.Play();
     }
     public void OnCoupeSelect()
     {
@@ -98,6 +109,7 @@ public class MenuController : MonoBehaviour
         DisableStart();
         PlayerPrefs.SetString("SelectedCar", "Coupe");
         PlayerPrefs.Save();
+        buttonClicked.Play();
     }
     public void OnTruckSelect()
     {
@@ -108,6 +120,7 @@ public class MenuController : MonoBehaviour
         DisableStart();
         PlayerPrefs.SetString("SelectedCar", "Truck");
         PlayerPrefs.Save();
+        buttonClicked.Play();
     }
 
     private void DisableStart()
@@ -125,5 +138,10 @@ public class MenuController : MonoBehaviour
     public void OnQuitButtonClicked()
     {
         Application.Quit();
+    }
+
+    public void OnButtonHover()
+    {
+        buttonHover.Play();
     }
 }

@@ -23,6 +23,10 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private TMP_Text countdownTxt;
     public string levelToLoad;
 
+    [Header("SFX")]
+    [SerializeField] AudioSource levelMusic;
+    [SerializeField] AudioSource countdownBeep;
+    [SerializeField] AudioSource countdownGo;
     void Start()
     {
         countdownTxt.enabled = false;
@@ -89,6 +93,7 @@ public class RaceManager : MonoBehaviour
             countdownTxt.text = countdown.ToString();
             yield return new WaitForSeconds(1f);
             countdown--;
+            countdownBeep.Play();
         }
 
         countdownTxt.text = "Go!";
@@ -107,6 +112,9 @@ public class RaceManager : MonoBehaviour
 
         CarMoveScr playerScript = player.GetComponent<CarMoveScr>();
         playerScript.start = true;
+
+        countdownGo.Play();
+        levelMusic.Play();
     }
     public void CheckFinish(string racerName, string racerType, GameObject model)
     {
